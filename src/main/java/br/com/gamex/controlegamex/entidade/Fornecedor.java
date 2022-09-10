@@ -2,15 +2,23 @@ package br.com.gamex.controlegamex.entidade;
 
 public class Fornecedor {
 
-	private long cnpj;
+	private long id;
+	private String cnpj;
 	private String nome;
 	private String endereco;
 	private String email;
+	private String criado_em;
 	
-	public long getCnpj() {
+	public long getId() {
+		return id;
+	}
+	public void setId(long id) {
+		this.id = id;
+	}
+	public String getCnpj() {
 		return cnpj;
 	}
-	public void setCnpj(long cnpj) {
+	public void setCnpj(String cnpj) {
 		this.cnpj = cnpj;
 	}
 	public String getNome() {
@@ -31,5 +39,11 @@ public class Fornecedor {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	
+	public String getCriado_em() {
+		return criado_em;
+	}
+	public void setCriado_em(String criado_em) {
+		this.criado_em = criado_em;
+	}
+
 }

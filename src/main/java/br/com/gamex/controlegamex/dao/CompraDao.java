@@ -1,5 +1,5 @@
 package br.com.gamex.controlegamex.dao;
 
-public class CompraDao {
-
+public class CompraDao extends Conexao {
+	
 }

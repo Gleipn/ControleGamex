@@ -1,5 +1,5 @@
 package br.com.gamex.controlegamex.dao;
 
-public class StatusDao {
+public class StatusDao extends Conexao {
 
 }

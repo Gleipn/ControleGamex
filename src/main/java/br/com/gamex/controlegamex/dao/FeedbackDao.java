@@ -1,5 +1,5 @@
 package br.com.gamex.controlegamex.dao;
 
-public class FeedbackDao {
+public class FeedbackDao extends Conexao {
 
 }

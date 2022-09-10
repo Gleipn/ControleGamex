@@ -1,5 +1,5 @@
 package br.com.gamex.controlegamex.dao;
 
-public class VendaDao {
-
+public class VendaDao extends Conexao {
+	
 }
