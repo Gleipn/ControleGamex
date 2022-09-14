@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html lang="en">
    <head>
@@ -70,7 +72,9 @@
                               <li class="nav-item">
                                  <a class="nav-link" href="laptop.html">videogame</a>
                               </li>
-                             
+                              <li class="nav-item">
+                                 <a class="nav-link" href="product.html">produtos</a>
+                              </li>
                               <li class="nav-item active">
                                  <a class="nav-link" href="contact.html">nosso contato</a>
                               </li>
@@ -78,7 +82,7 @@
                                  <a class="nav-link" href="#"><i class="fa fa-search" aria-hidden="true"></i></a>
                               </li>
                               <li class="nav-item d_none">
-                                 <a class="nav-link" href="login.html">Login</a>
+                                 <a class="nav-link" href="#">Login</a>
                               </li>
                            </ul>
                         </div>
@@ -90,84 +94,46 @@
       </header>
       <!-- end header inner -->
       <!-- end header -->
-      <!-- products -->
-      <div  class="products">
+      <!--  contact -->
+      <div class="contact">
          <div class="container">
             <div class="row">
                <div class="col-md-12">
                   <div class="titlepage">
-                     <h2>Our Products</h2>
+                     <h2>Cadastro de cliente</h2>
                   </div>
                </div>
             </div>
             <div class="row">
-               <div class="col-md-12">
-                  <div class="our_products">
+               <div class="col-md-10 offset-md-1">
+                  <form id="request" method="post" action="CadastrarCliente" class="main_form">
                      <div class="row">
-                        <div class="col-md-4 margin_bottom1">
-                           <div class="product_box">
-                              <figure><img src="images/product1.png" alt="#"/></figure>
-                              <h3>Computer</h3>
-                           </div>
-                        </div>
-                        <div class="col-md-4 margin_bottom1">
-                           <div class="product_box">
-                              <figure><img src="images/product2.png" alt="#"/></figure>
-                              <h3>Laptop</h3>
-                           </div>
-                        </div>
-                        <div class="col-md-4 margin_bottom1">
-                           <div class="product_box">
-                              <figure><img src="images/product3.png" alt="#"/></figure>
-                              <h3>Tablet</h3>
-                           </div>
-                        </div>
-                        <div class="col-md-4 margin_bottom1">
-                           <div class="product_box">
-                              <figure><img src="images/product4.png" alt="#"/></figure>
-                              <h3>Speakers</h3>
-                           </div>
-                        </div>
-                        <div class="col-md-4 margin_bottom1">
-                           <div class="product_box">
-                              <figure><img src="images/product5.png" alt="#"/></figure>
-                              <h3>internet</h3>
-                           </div>
-                        </div>
-                        <div class="col-md-4 margin_bottom1">
-                           <div class="product_box">
-                              <figure><img src="images/product6.png" alt="#"/></figure>
-                              <h3>Hardisk</h3>
-                           </div>
-                        </div>
-                        <div class="col-md-4">
-                           <div class="product_box">
-                              <figure><img src="images/product7.png" alt="#"/></figure>
-                              <h3>Rams</h3>
-                           </div>
-                        </div>
-                        <div class="col-md-4">
-                           <div class="product_box">
-                              <figure><img src="images/product8.png" alt="#"/></figure>
-                              <h3>Bettery</h3>
-                           </div>
-                        </div>
-                        <div class="col-md-4">
-                           <div class="product_box">
-                              <figure><img src="images/product9.png" alt="#"/></figure>
-                              <h3>Drive</h3>
-                           </div>
+                        <div class="col-md-12 ">
+                           <input class="contactus" placeholder="cpf do cliente" type="text" name="inputCpf"> 
                         </div>
                         <div class="col-md-12">
-                           <a class="read_more" href="#">See More</a>
+                            <input class="contactus" placeholder="Nome do cliente" type="text" name="inputNome">                          
+                         </div>
+                         <div class="col-md-12">
+                            <input class="contactus" placeholder="endereço do cliente" type="text" name="inputEndereco">                          
+                         </div>
+                         <div class="col-md-12">
+                            <input class="contactus" placeholder="Telefone do cliente" type="text" name="inputTelefone">                          
+                         </div>
+                        <div class="col-md-12">
+                           <input class="contactus" placeholder="Email do cliente" type="text" name="inputEmail"> 
+                        </div>
+                        
+                        <div class="col-md-12">
+                           <input type="submit" class="send_btn">
                         </div>
                      </div>
-                  </div>
+                  </form>
                </div>
             </div>
          </div>
       </div>
-      <!-- end products -->
+      <!-- end contact -->
       <!--  footer -->
       <footer>
          <div class="footer">
@@ -207,7 +173,7 @@
                <div class="container">
                   <div class="row">
                      <div class="col-md-12">
-                        <p>Â© 2019 All Rights Reserved. Design by<a href="https://html.design/"> Free Html Templates</a></p>
+                        <p>© 2019 All Rights Reserved. Design by<a href="https://html.design/"> Free Html Templates</a></p>
                      </div>
                   </div>
                </div>
@@ -225,4 +191,3 @@
       <script src="js/custom.js"></script>
    </body>
 </html>
-
