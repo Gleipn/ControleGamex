@@ -2,16 +2,17 @@ package br.com.gamex.controlegamex.model.dao;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import br.com.gamex.controlegamex.model.entidade.Usuario;
 
 public class UsuarioDao extends Conexao {
 	
-	public boolean Cadastrar(Usuario u) {
-		boolean ok = true;
+	public void Cadastrar(Usuario u) {
 		
-		String sql = "insert into usuario (cpf, nome, email, senha) values (?, ?, ?, md5(?)";
+		String sql = "insert into usuario (cpf_usuario, nome_usuario, email_usuario, "
+				+ "senha_usuario) values (?, ?, ?, md5(?)";
 		
 		try {
 			PreparedStatement ps = criarConexao().prepareStatement(sql);
@@ -21,21 +22,18 @@ public class UsuarioDao extends Conexao {
 			ps.setString(4, u.getSenha());
 			ps.execute();
 			
-		} catch(Exception e) {
+		} catch(SQLException e) {
 			e.printStackTrace();
-			ok = false;
 		} finally {
 			fecharConexao();
 		}
-		
-		return ok;
 		
 	}
 	
 	public ArrayList<Usuario> Listar(String nomeBusca) {
 		ArrayList<Usuario> lista = new ArrayList<Usuario>();
 		
-		String sql = "select * from usuario where nome like ? order by nome";
+		String sql = "select * from usuario where nome_usuario like ? order by nome_usuario";
 		
 		try {
 			PreparedStatement ps = criarConexao().prepareStatement(sql);
@@ -46,15 +44,15 @@ public class UsuarioDao extends Conexao {
 			Usuario u;
 			while(rs.next()) {
 				u = new Usuario();
-				u.setId(rs.getLong("id"));
-				u.setNome(rs.getString("nome"));
-				u.setCpf(rs.getString("cpf"));
-				u.setEmail(rs.getString("email"));
+				u.setId(rs.getLong("id_usuario"));
+				u.setNome(rs.getString("nome_usuario"));
+				u.setCpf(rs.getString("cpf_usuario"));
+				u.setEmail(rs.getString("email_usuario"));
 				
 				lista.add(u);
 				
 			}
-		} catch(Exception e) {
+		} catch(SQLException e) {
 			e.printStackTrace();
 		} finally {
 			fecharConexao();
@@ -67,7 +65,7 @@ public class UsuarioDao extends Conexao {
 	public Usuario Localizar(long id) {
 		Usuario u = null;
 		
-		String sql = "select * from usuario where id = ?";
+		String sql = "select * from usuario where id_usuario = ?";
 		
 		try {
 			PreparedStatement ps = criarConexao().prepareStatement(sql);
@@ -77,15 +75,15 @@ public class UsuarioDao extends Conexao {
 			
 			if(rs.next()) {
 				u = new Usuario();
-				u.setId(rs.getLong("id"));
-				u.setNome(rs.getString("nome"));
-				u.setCpf(rs.getString("cpf"));
-				u.setEmail(rs.getString("email"));
+				u.setId(rs.getLong("id_usuario"));
+				u.setNome(rs.getString("nome_usuario"));
+				u.setCpf(rs.getString("cpf_usuario"));
+				u.setEmail(rs.getString("email_usuario"));
 				u.setCriado_em(rs.getString("criado_em"));
 				
 			}
 			
-		} catch(Exception e) {
+		} catch(SQLException e) {
 			e.printStackTrace();
 		} finally {
 			fecharConexao();
@@ -95,11 +93,11 @@ public class UsuarioDao extends Conexao {
 		
 	}
 	
-	public boolean Alterar(Usuario u) {
-		boolean ok = true;
+	public void Alterar(Usuario u) {
 		
-		String sql = "update usuario set cpf = ?, nome = ?, email = ?, senha = md5(?) "
-				+ "where id = ?";
+		String sql = "update usuario set cpf_usuario = ?, nome_usuario = ?, email_usuario = ?, "
+				+ "senha_usuario = md5(?) "
+				+ "where id_usuario = ?";
 		
 		try {
 			PreparedStatement ps = criarConexao().prepareStatement(sql);
@@ -111,21 +109,17 @@ public class UsuarioDao extends Conexao {
 			
 			ps.execute();
 			
-		} catch(Exception e) {
+		} catch(SQLException e) {
 			e.printStackTrace();
-			ok = false;
 		} finally {
 			fecharConexao();
 		}
 		
-		return ok;
-		
 	}
 	
-	public boolean Excluir(Usuario u) {
-		boolean ok  = true;
+	public void Excluir(Usuario u) {
 		
-		String sql = "delete from usuario where id = ?";
+		String sql = "delete from usuario where id_usuario = ?";
 		
 		try {
 			PreparedStatement ps = criarConexao().prepareStatement(sql);
@@ -133,14 +127,12 @@ public class UsuarioDao extends Conexao {
 			
 			ps.execute();
 			
-		} catch(Exception e) {
+		} catch(SQLException e) {
 			e.printStackTrace();
-			ok = false;
 		} finally {
 			fecharConexao();
 		}
 		
-		return ok;
 	}
 	
 }

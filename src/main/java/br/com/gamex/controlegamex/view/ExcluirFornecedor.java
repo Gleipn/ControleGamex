@@ -2,8 +2,8 @@ package br.com.gamex.controlegamex.view;
 
 import java.io.IOException;
 
-import br.com.gamex.controlegamex.controller.ClienteController;
-import br.com.gamex.controlegamex.model.entidade.Cliente;
+import br.com.gamex.controlegamex.controller.FornecedorController;
+import br.com.gamex.controlegamex.model.entidade.Fornecedor;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
@@ -11,15 +11,15 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class IniciarAlterarCliente
+ * Servlet implementation class ExcluirFornecedor
  */
-public class IniciarAlterarCliente extends HttpServlet {
+public class ExcluirFornecedor extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public IniciarAlterarCliente() {
+    public ExcluirFornecedor() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -35,17 +35,17 @@ public class IniciarAlterarCliente extends HttpServlet {
 		
 		try {
 			id = Long.parseLong(request.getParameter("id"));
-			
-		} catch (Exception e) {
+		}catch(Exception e) {
 			e.printStackTrace();
 		}
 		
-		ClienteController controller = new ClienteController();
-		Cliente c = controller.Localizar(id);
+		FornecedorController controller = new FornecedorController();
+		Fornecedor f = new Fornecedor();
+		f.setId(id);
 		
-		request.setAttribute("cliente", c);
+		controller.Excluir(f);
 		
-		RequestDispatcher rd = request.getRequestDispatcher("testeEditar.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("");
 		rd.forward(request, response);
 	}
 
@@ -55,7 +55,6 @@ public class IniciarAlterarCliente extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
-		
 	}
 
 }

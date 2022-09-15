@@ -2,14 +2,14 @@ package br.com.gamex.controlegamex.model.dao;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import br.com.gamex.controlegamex.model.entidade.Cliente;
 
 public class ClienteDao extends Conexao {
 
-	public boolean Cadastrar(Cliente c) {
-		boolean ok = true;
+	public void Cadastrar(Cliente c) {
 		
 		String sql = "insert into cliente (cpf_cliente, nome_cliente, endereco_cliente, "
 				+ "telefone_cliente, email_cliente) "
@@ -25,21 +25,19 @@ public class ClienteDao extends Conexao {
 			
 			ps.execute();
 			
-		} catch(Exception e) {
+		} catch(SQLException e) {
+			System.out.println("Deu problema no insert");
 			e.printStackTrace();
-			ok = false;
 		} finally {
 			fecharConexao();
 		}
-		
-		return ok;
 		
 	}
 	
 	public ArrayList<Cliente> Listar(String nomeBusca) {
 		ArrayList<Cliente> lista = new ArrayList<Cliente>();
 		
-		String sql = "select * from cliente where nome like ? order by nome";
+		String sql = "select * from cliente where nome_cliente like ? order by nome_cliente";
 		
 		try {
 			PreparedStatement ps = criarConexao().prepareStatement(sql);
@@ -50,17 +48,19 @@ public class ClienteDao extends Conexao {
 			Cliente c;
 			while(rs.next()) {
 				c = new Cliente();
-				c.setId(rs.getLong("id"));
-				c.setCpf(rs.getString("cpf"));
-				c.setNome(rs.getString("nome"));
-				c.setEndereco(rs.getString("endereco"));
-				c.setTelefone(rs.getString("telefone"));
-				c.setEmail(rs.getString("email"));
+				c.setId(rs.getLong("id_cliente"));
+				c.setCpf(rs.getString("cpf_cliente"));
+				c.setNome(rs.getString("nome_cliente"));
+				c.setEndereco(rs.getString("endereco_cliente"));
+				c.setTelefone(rs.getString("telefone_cliente"));
+				c.setEmail(rs.getString("email_cliente"));
+				c.setCriado_em(rs.getString("criado_em"));
 				
 				lista.add(c);
 				
 			}
-		} catch(Exception e) {
+		} catch(SQLException e) { 
+			System.out.println("Erro no Listar");
 			e.printStackTrace();
 		} finally {
 			fecharConexao();
@@ -73,7 +73,7 @@ public class ClienteDao extends Conexao {
 	public Cliente Localizar(long id) {
 		Cliente c = null;
 		
-		String sql = "select * from cliente where id = ?";
+		String sql = "select * from cliente where id_cliente = ?";
 		
 		try {
 			PreparedStatement ps = criarConexao().prepareStatement(sql);
@@ -83,16 +83,17 @@ public class ClienteDao extends Conexao {
 			
 			if(rs.next()) {
 				c = new Cliente();
-				c.setId(rs.getLong("id"));
-				c.setCpf(rs.getString("cpf"));
-				c.setNome(rs.getString("nome"));
-				c.setEndereco(rs.getString("endereco"));
-				c.setTelefone(rs.getString("telefone"));
-				c.setEmail(rs.getString("email"));
+				c.setId(rs.getLong("id_cliente"));
+				c.setCpf(rs.getString("cpf_cliente"));
+				c.setNome(rs.getString("nome_cliente"));
+				c.setEndereco(rs.getString("endereco_cliente"));
+				c.setTelefone(rs.getString("telefone_cliente"));
+				c.setEmail(rs.getString("email_cliente"));
 				
 			}
 			
-		} catch(Exception e) {
+		} catch(SQLException e) { 
+			System.out.println("Erro no Localizar");
 			e.printStackTrace();
 		} finally {
 			fecharConexao();
@@ -102,11 +103,10 @@ public class ClienteDao extends Conexao {
 		
 	}
 	
-	public boolean Alterar(Cliente c) {
-		boolean ok = true;
+	public void Alterar(Cliente c) {
 		
 		String sql = "update cliente set cpf_cliente = ?, nome_cliente = ?, "
-				+ "endereco_cliente = ?, telefone_cliente = ?, email_cliente = ? where id = ?";
+				+ "endereco_cliente = ?, telefone_cliente = ?, email_cliente = ? where id_cliente = ?";
 		
 		try {
 			PreparedStatement ps = criarConexao().prepareStatement(sql);
@@ -119,19 +119,16 @@ public class ClienteDao extends Conexao {
 			
 			ps.execute();
 			
-		} catch(Exception e) {
+		} catch(SQLException e) {
+			System.out.println("Erro no Update");
 			e.printStackTrace();
-			ok = false;
 		} finally {
 			fecharConexao();
 		}
 		
-		return ok;
-		
 	}
 	
-	public boolean Excluir(Cliente c) {
-		boolean ok  = true;
+	public void Excluir(Cliente c) {
 		
 		String sql = "delete from cliente where id_cliente = ?";
 		
@@ -141,14 +138,13 @@ public class ClienteDao extends Conexao {
 			
 			ps.execute();
 			
-		} catch(Exception e) {
+		} catch(SQLException e) {
+			System.out.println("Erro na exclusao");
 			e.printStackTrace();
-			ok = false;
 		} finally {
 			fecharConexao();
 		}
 		
-		return ok;
 	}
 	
 }

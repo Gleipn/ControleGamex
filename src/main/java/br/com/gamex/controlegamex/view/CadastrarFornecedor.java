@@ -2,8 +2,8 @@ package br.com.gamex.controlegamex.view;
 
 import java.io.IOException;
 
-import br.com.gamex.controlegamex.controller.ClienteController;
-import br.com.gamex.controlegamex.model.entidade.Cliente;
+import br.com.gamex.controlegamex.controller.FornecedorController;
+import br.com.gamex.controlegamex.model.entidade.Fornecedor;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
@@ -11,15 +11,15 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class AlterarCliente
+ * Servlet implementation class CadastrarFornecedor
  */
-public class AlterarCliente extends HttpServlet {
+public class CadastrarFornecedor extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AlterarCliente() {
+    public CadastrarFornecedor() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -39,32 +39,21 @@ public class AlterarCliente extends HttpServlet {
 		// TODO Auto-generated method stub
 		//doGet(request, response);
 		
-		String cpf = request.getParameter("inputCpf");
+		String cnpj = request.getParameter("inputCnpj");
 		String nome = request.getParameter("inputNome");
 		String endereco = request.getParameter("inputEndereco");
-		String telefone = request.getParameter("inputTelefone");
 		String email = request.getParameter("inputEmail");
 		
-		long id = 0;
+		Fornecedor f = new Fornecedor();
+		f.setCnpj(cnpj);
+		f.setNome(nome);
+		f.setEndereco(endereco);
+		f.setEmail(email);
 		
-		try {
-			id = Long.parseLong(request.getParameter("InputIdentificador"));
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		FornecedorController controller = new FornecedorController();
+		controller.Cadastrar(f);
 		
-		Cliente c = new Cliente();
-		c.setId(id);
-		c.setCpf(cpf);
-		c.setNome(nome);
-		c.setEndereco(endereco);
-		c.setTelefone(telefone);
-		c.setEmail(email);
-		
-		ClienteController controller = new ClienteController();
-		controller.Alterar(c);
-		
-		RequestDispatcher rd = request.getRequestDispatcher("testeLista.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("");
 		rd.forward(request, response);
 	}
 

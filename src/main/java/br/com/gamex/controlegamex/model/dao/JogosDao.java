@@ -2,16 +2,17 @@ package br.com.gamex.controlegamex.model.dao;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import br.com.gamex.controlegamex.model.entidade.Jogos;
 
 public class JogosDao extends Conexao {
 	
-	public boolean Cadastrar(Jogos j) {
-		boolean ok = true;
+	public void Cadastrar(Jogos j) {
 		
-		String sql = "insert into jogos (nome, categoria, desenvolvedor, valor, estoque) "
+		String sql = "insert into jogos (nome_jogo, categoria_jogo, desenvolvedor_jogo, "
+				+ "valor_jogo, estoque_jogo) "
 				+ "values (?, ?, ?, ?, ?)";
 		
 		try {
@@ -24,21 +25,18 @@ public class JogosDao extends Conexao {
 			
 			ps.execute();
 			
-		} catch(Exception e) {
+		} catch(SQLException e) {
 			e.printStackTrace();
-			ok = false;
 		} finally {
 			fecharConexao();
 		}
-		
-		return ok;
 		
 	}
 	
 	public ArrayList<Jogos> Listar(String nomeBusca) {
 		ArrayList<Jogos> lista = new ArrayList<Jogos>();
 		
-		String sql = "select * from jogos where nome like ? order by nome";
+		String sql = "select * from jogos where nome_jogo like ? order by nome_jogo";
 		
 		try {
 			PreparedStatement ps = criarConexao().prepareStatement(sql);
@@ -49,16 +47,16 @@ public class JogosDao extends Conexao {
 			Jogos j;
 			while(rs.next()) {
 				j = new Jogos();
-				j.setNome(rs.getString("nome"));
-				j.setCategoria(rs.getString("categoria"));
-				j.setDesenvolvedor(rs.getString("desenvolvedor"));
-				j.setValor(rs.getString("valor"));
-				j.setEstoque(rs.getString("estoque"));
+				j.setNome(rs.getString("nome_jogo"));
+				j.setCategoria(rs.getString("categoria_jogo"));
+				j.setDesenvolvedor(rs.getString("desenvolvedor_jogo"));
+				j.setValor(rs.getString("valor_jogo"));
+				j.setEstoque(rs.getString("estoque_jogo"));
 				
 				lista.add(j);
 				
 			}
-		} catch(Exception e) {
+		} catch(SQLException e) {
 			e.printStackTrace();
 		} finally {
 			fecharConexao();
@@ -71,7 +69,7 @@ public class JogosDao extends Conexao {
 	public Jogos Localizar(long id) {
 		Jogos j = null;
 		
-		String sql = "select * from jogos where id = ?";
+		String sql = "select * from jogos where id_jogo = ?";
 		
 		try {
 			PreparedStatement ps = criarConexao().prepareStatement(sql);
@@ -81,15 +79,15 @@ public class JogosDao extends Conexao {
 			
 			if(rs.next()) {
 				j = new Jogos();
-				j.setNome(rs.getString("nome"));
-				j.setCategoria(rs.getString("categoria"));
-				j.setDesenvolvedor(rs.getString("desenvolvedor"));
-				j.setValor(rs.getString("valor"));
-				j.setEstoque(rs.getString("estoque"));
+				j.setNome(rs.getString("nome_jogo"));
+				j.setCategoria(rs.getString("categoria_jogo"));
+				j.setDesenvolvedor(rs.getString("desenvolvedor_jogo"));
+				j.setValor(rs.getString("valor_jogo"));
+				j.setEstoque(rs.getString("estoque_jogo"));
 				
 			}
 			
-		} catch(Exception e) {
+		} catch(SQLException e) {
 			e.printStackTrace();
 		} finally {
 			fecharConexao();
@@ -99,11 +97,11 @@ public class JogosDao extends Conexao {
 		
 	}
 	
-	public boolean Alterar(Jogos j) {
-		boolean ok = true;
+	public void Alterar(Jogos j) {
 		
-		String sql = "update jogos set nome = ?, categoria = ?, desenvolvedor = ?, valor = ?, "
-				+ "estoque = ? where id = ?";
+		String sql = "update jogos set nome_jogo = ?, categoria_jogo = ?, "
+				+ "desenvolvedor_jogo = ?, valor_jogo = ?, "
+				+ "estoque_jogo = ? where id_jogo = ?";
 		
 		try {
 			PreparedStatement ps = criarConexao().prepareStatement(sql);
@@ -116,21 +114,17 @@ public class JogosDao extends Conexao {
 			
 			ps.execute();
 			
-		} catch(Exception e) {
+		} catch(SQLException e) {
 			e.printStackTrace();
-			ok = false;
 		} finally {
 			fecharConexao();
 		}
 		
-		return ok;
-		
 	}
 	
-	public boolean Excluir(Jogos j) {
-		boolean ok  = true;
+	public void Excluir(Jogos j) {
 		
-		String sql = "delete from jogos where id = ?";
+		String sql = "delete from jogos where id_jogo = ?";
 		
 		try {
 			PreparedStatement ps = criarConexao().prepareStatement(sql);
@@ -138,14 +132,12 @@ public class JogosDao extends Conexao {
 			
 			ps.execute();
 			
-		} catch(Exception e) {
+		} catch(SQLException e) {
 			e.printStackTrace();
-			ok = false;
 		} finally {
 			fecharConexao();
 		}
 		
-		return ok;
 	}
 	
 }

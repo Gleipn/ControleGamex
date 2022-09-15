@@ -1,25 +1,26 @@
 package br.com.gamex.controlegamex.view;
 
-import java.io.IOException;
-
-import br.com.gamex.controlegamex.controller.ClienteController;
-import br.com.gamex.controlegamex.model.entidade.Cliente;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.io.IOException;
+
+import br.com.gamex.controlegamex.controller.JogosController;
+import br.com.gamex.controlegamex.model.entidade.Jogos;
 
 /**
- * Servlet implementation class IniciarAlterarCliente
+ * Servlet implementation class IniciarAlterarJogos
  */
-public class IniciarAlterarCliente extends HttpServlet {
+public class IniciarAlterarJogos extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public IniciarAlterarCliente() {
+    public IniciarAlterarJogos() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,7 +31,7 @@ public class IniciarAlterarCliente extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
-		
+
 		long id = 0;
 		
 		try {
@@ -40,12 +41,12 @@ public class IniciarAlterarCliente extends HttpServlet {
 			e.printStackTrace();
 		}
 		
-		ClienteController controller = new ClienteController();
-		Cliente c = controller.Localizar(id);
+		JogosController controller = new JogosController();
+		Jogos j = controller.Localizar(id);
 		
-		request.setAttribute("cliente", c);
+		request.setAttribute("fornecedor", j);
 		
-		RequestDispatcher rd = request.getRequestDispatcher("testeEditar.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("");
 		rd.forward(request, response);
 	}
 
@@ -55,7 +56,6 @@ public class IniciarAlterarCliente extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
-		
 	}
 
 }

@@ -2,16 +2,17 @@ package br.com.gamex.controlegamex.model.dao;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import br.com.gamex.controlegamex.model.entidade.Fornecedor;
 
 public class FornecedorDao extends Conexao {
 
-	public boolean Cadastrar(Fornecedor f) {
-		boolean ok = true;
+	public void Cadastrar(Fornecedor f) {
 		
-		String sql = "insert into fornecedor (cnpj, nome, endereco, email) "
+		String sql = "insert into fornecedor (cnpj_fornecedor, nome_fornecedor, "
+				+ "endereco_fornecedor, email_fornecedor) "
 				+ "values (?, ?, ?, ?)";
 		
 		try {
@@ -23,21 +24,19 @@ public class FornecedorDao extends Conexao {
 			
 			ps.execute();
 			
-		} catch(Exception e) {
+		} catch(SQLException e) {
 			e.printStackTrace();
-			ok = false;
 		} finally {
 			fecharConexao();
 		}
-		
-		return ok;
 		
 	}
 	
 	public ArrayList<Fornecedor> Listar(String nomeBusca) {
 		ArrayList<Fornecedor> lista = new ArrayList<Fornecedor>();
 		
-		String sql = "select * from fornecedor where nome like ? order by nome";
+		String sql = "select * from fornecedor where nome_fornecedor like ? "
+				+ "order by nome_fornecedor";
 		
 		try {
 			PreparedStatement ps = criarConexao().prepareStatement(sql);
@@ -48,16 +47,16 @@ public class FornecedorDao extends Conexao {
 			Fornecedor f;
 			while(rs.next()) {
 				f = new Fornecedor();
-				f.setId(rs.getLong("id"));
-				f.setCnpj(rs.getString("cnpj"));
-				f.setNome(rs.getString("nome"));
-				f.setEndereco(rs.getString("endereco"));
-				f.setEmail(rs.getString("email"));
+				f.setId(rs.getLong("id_fornecedor"));
+				f.setCnpj(rs.getString("cnpj_fornecedor"));
+				f.setNome(rs.getString("nome_fornecedor"));
+				f.setEndereco(rs.getString("endereco_fornecedor"));
+				f.setEmail(rs.getString("email_fornecedor"));
 				
 				lista.add(f);
 				
 			}
-		} catch(Exception e) {
+		} catch(SQLException e) {
 			e.printStackTrace();
 		} finally {
 			fecharConexao();
@@ -70,7 +69,7 @@ public class FornecedorDao extends Conexao {
 	public Fornecedor Localizar(long id) {
 		Fornecedor f = null;
 		
-		String sql = "select * from fornecedor where id = ?";
+		String sql = "select * from fornecedor where id_fornecedor = ?";
 		
 		try {
 			PreparedStatement ps = criarConexao().prepareStatement(sql);
@@ -80,15 +79,15 @@ public class FornecedorDao extends Conexao {
 			
 			if(rs.next()) {
 				f = new Fornecedor();
-				f.setId(rs.getLong("id"));
-				f.setCnpj(rs.getString("cnpj"));
-				f.setNome(rs.getString("nome"));
-				f.setEndereco(rs.getString("endereco"));
-				f.setEmail(rs.getString("email"));
+				f.setId(rs.getLong("id_fornecedor"));
+				f.setCnpj(rs.getString("cnpj_fornecedor"));
+				f.setNome(rs.getString("nome_fornecedor"));
+				f.setEndereco(rs.getString("endereco_fornecedor"));
+				f.setEmail(rs.getString("email_fornecedor"));
 				
 			}
 			
-		} catch(Exception e) {
+		} catch(SQLException e) {
 			e.printStackTrace();
 		} finally {
 			fecharConexao();
@@ -98,11 +97,11 @@ public class FornecedorDao extends Conexao {
 		
 	}
 	
-	public boolean Alterar(Fornecedor f) {
-		boolean ok = true;
+	public void Alterar(Fornecedor f) {
 		
-		String sql = "update fornecedor set cnpj = ?, nome = ?, endereco = ?,"
-				+ " email = ? where id = ?";
+		String sql = "update fornecedor set cnpj_fornecedor = ?, nome_fornecedor = ?,"
+				+ " endereco_fornecedor = ?,"
+				+ " email_fornecedor = ? where id_fornecedor = ?";
 		
 		try {
 			PreparedStatement ps = criarConexao().prepareStatement(sql);
@@ -114,21 +113,17 @@ public class FornecedorDao extends Conexao {
 			
 			ps.execute();
 			
-		} catch(Exception e) {
+		} catch(SQLException e) {
 			e.printStackTrace();
-			ok = false;
 		} finally {
 			fecharConexao();
 		}
 		
-		return ok;
-		
 	}
 	
-	public boolean Excluir(Fornecedor f) {
-		boolean ok  = true;
+	public void Excluir(Fornecedor f) {
 		
-		String sql = "delete from fornecedor where id = ?";
+		String sql = "delete from fornecedor where id_fornecedor = ?";
 		
 		try {
 			PreparedStatement ps = criarConexao().prepareStatement(sql);
@@ -136,14 +131,12 @@ public class FornecedorDao extends Conexao {
 			
 			ps.execute();
 			
-		} catch(Exception e) {
+		} catch(SQLException e) {
 			e.printStackTrace();
-			ok = false;
 		} finally {
 			fecharConexao();
 		}
 		
-		return ok;
 	}
 	
 }

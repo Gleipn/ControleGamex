@@ -2,6 +2,7 @@ package br.com.gamex.controlegamex.model.dao;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import br.com.gamex.controlegamex.model.entidade.Compra;
@@ -10,34 +11,31 @@ import br.com.gamex.controlegamex.model.entidade.Jogos;
 
 public class CompraDao extends Conexao {
 	
-	public boolean Cadastrar(Compra c) {
-		boolean ok = true;
+	public void Cadastrar(Compra c) {
 		
-		String sql = "insert into compra (nota_fiscal, fornecedor_id, jogo_id) "
-				+ "values (?, ?, ?)";
+		String sql = "insert into compra (fornecedor_id, jogo_id) "
+				+ "values (?, ?)";
 		
 		try {
 			PreparedStatement ps = criarConexao().prepareStatement(sql);
-			ps.setLong(1, c.getNota_fiscal());
-			ps.setLong(2, c.getFornecedor().getId());
-			ps.setLong(3, c.getJogo().getId());
+			ps.setLong(1, c.getFornecedor().getId());
+			ps.setLong(2, c.getJogo().getId());
 			
 			ps.execute();
 			
-		} catch(Exception e) {
+		} catch(SQLException e) {
+			System.out.println("Deu problema no insert");
 			e.printStackTrace();
-			ok = false;
 		} finally {
 			fecharConexao();
 		}
 		
-		return ok;
 	}
 
 	public ArrayList<Compra> Listar(){
 		ArrayList<Compra> lista = new ArrayList<Compra>();
 		
-		String sql = "select c.*, f.nome as fornecedor, j.nome as jogo from compra c "
+		String sql = "select c.*, f.nome as fornecedor_nome, j.nome as jogo_nome from compra c "
 				+ "inner join fornecedor f on f.id = c.fornecedor_id "
 				+ "inner join jogos j on j.id = c.jogo_id "
 				+ "order by c.criado_em";
@@ -56,8 +54,7 @@ public class CompraDao extends Conexao {
 				
 				c = new Compra();
 				c.setId(rs.getLong("id_compra"));
-				c.setNota_fiscal(rs.getLong("nota_fiscal"));
-				c.setCriado_em(rs.getString("data_compra"));
+				c.setCriado_em(rs.getString("criado_em"));
 				
 				f = new Fornecedor();
 				f.setId(rs.getLong("fornecedor_id"));
@@ -71,7 +68,8 @@ public class CompraDao extends Conexao {
 				
 				lista.add(c);
 			}
-		} catch(Exception e) {
+		} catch(SQLException e) {
+			System.out.println("Erro no Listar");
 			e.printStackTrace();
 		} finally {
 			fecharConexao();

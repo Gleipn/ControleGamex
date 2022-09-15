@@ -2,8 +2,8 @@ package br.com.gamex.controlegamex.view;
 
 import java.io.IOException;
 
-import br.com.gamex.controlegamex.controller.ClienteController;
-import br.com.gamex.controlegamex.model.entidade.Cliente;
+import br.com.gamex.controlegamex.controller.FornecedorController;
+import br.com.gamex.controlegamex.model.entidade.Fornecedor;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
@@ -11,15 +11,15 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class AlterarCliente
+ * Servlet implementation class AlterarFornecedor
  */
-public class AlterarCliente extends HttpServlet {
+public class AlterarFornecedor extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AlterarCliente() {
+    public AlterarFornecedor() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -39,10 +39,9 @@ public class AlterarCliente extends HttpServlet {
 		// TODO Auto-generated method stub
 		//doGet(request, response);
 		
-		String cpf = request.getParameter("inputCpf");
+		String cnpj = request.getParameter("inputCnpj");
 		String nome = request.getParameter("inputNome");
 		String endereco = request.getParameter("inputEndereco");
-		String telefone = request.getParameter("inputTelefone");
 		String email = request.getParameter("inputEmail");
 		
 		long id = 0;
@@ -53,18 +52,17 @@ public class AlterarCliente extends HttpServlet {
 			e.printStackTrace();
 		}
 		
-		Cliente c = new Cliente();
-		c.setId(id);
-		c.setCpf(cpf);
-		c.setNome(nome);
-		c.setEndereco(endereco);
-		c.setTelefone(telefone);
-		c.setEmail(email);
+		Fornecedor f = new Fornecedor();
+		f.setId(id);
+		f.setCnpj(cnpj);
+		f.setNome(nome);
+		f.setEndereco(endereco);
+		f.setEmail(email);
 		
-		ClienteController controller = new ClienteController();
-		controller.Alterar(c);
+		FornecedorController controller = new FornecedorController();
+		controller.Alterar(f);
 		
-		RequestDispatcher rd = request.getRequestDispatcher("testeLista.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("");
 		rd.forward(request, response);
 	}
 

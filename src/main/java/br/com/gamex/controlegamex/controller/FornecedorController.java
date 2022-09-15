@@ -17,8 +17,8 @@ public class FornecedorController {
 		dao.Alterar(f);
 	}
 	
-	public ArrayList<Fornecedor> Listar(String nome) {
-		return dao.Listar(nome);
+	public ArrayList<Fornecedor> Listar(String nomeBusca) {
+		return dao.Listar(nomeBusca);
 	}
 	
 	public Fornecedor Localizar(long id) {

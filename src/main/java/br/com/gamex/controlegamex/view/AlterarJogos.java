@@ -2,8 +2,8 @@ package br.com.gamex.controlegamex.view;
 
 import java.io.IOException;
 
-import br.com.gamex.controlegamex.controller.ClienteController;
-import br.com.gamex.controlegamex.model.entidade.Cliente;
+import br.com.gamex.controlegamex.controller.JogosController;
+import br.com.gamex.controlegamex.model.entidade.Jogos;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
@@ -11,15 +11,15 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class AlterarCliente
+ * Servlet implementation class AlterarJogos
  */
-public class AlterarCliente extends HttpServlet {
+public class AlterarJogos extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AlterarCliente() {
+    public AlterarJogos() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -39,11 +39,11 @@ public class AlterarCliente extends HttpServlet {
 		// TODO Auto-generated method stub
 		//doGet(request, response);
 		
-		String cpf = request.getParameter("inputCpf");
 		String nome = request.getParameter("inputNome");
-		String endereco = request.getParameter("inputEndereco");
-		String telefone = request.getParameter("inputTelefone");
-		String email = request.getParameter("inputEmail");
+		String categoria = request.getParameter("inputCategoria");
+		String desenvolvedor = request.getParameter("inputDesenvolvedor");
+		String valor = request.getParameter("inputValor");
+		String estoque = request.getParameter("inputEstoque");
 		
 		long id = 0;
 		
@@ -53,18 +53,17 @@ public class AlterarCliente extends HttpServlet {
 			e.printStackTrace();
 		}
 		
-		Cliente c = new Cliente();
-		c.setId(id);
-		c.setCpf(cpf);
-		c.setNome(nome);
-		c.setEndereco(endereco);
-		c.setTelefone(telefone);
-		c.setEmail(email);
+		Jogos j = new Jogos();
+		j.setNome(nome);
+		j.setCategoria(categoria);
+		j.setDesenvolvedor(desenvolvedor);
+		j.setValor(valor);
+		j.setEstoque(estoque);
 		
-		ClienteController controller = new ClienteController();
-		controller.Alterar(c);
+		JogosController controller = new JogosController();
+		controller.Alterar(j);
 		
-		RequestDispatcher rd = request.getRequestDispatcher("testeLista.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("");
 		rd.forward(request, response);
 	}
 

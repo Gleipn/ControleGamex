@@ -17,8 +17,8 @@ public class JogosController {
 		dao.Alterar(j);
 	}
 	
-	public ArrayList<Jogos> Listar(String nome) {
-		return dao.Listar(nome);
+	public ArrayList<Jogos> Listar(String nomeBusca) {
+		return dao.Listar(nomeBusca);
 	}
 	
 	public Jogos Localizar(long id) {

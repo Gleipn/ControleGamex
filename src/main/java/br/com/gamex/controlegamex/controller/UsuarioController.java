@@ -17,8 +17,8 @@ public class UsuarioController {
 		dao.Alterar(u);
 	}
 	
-	public ArrayList<Usuario> Listar(String nome) {
-		return dao.Listar(nome);
+	public ArrayList<Usuario> Listar(String nomeBusca) {
+		return dao.Listar(nomeBusca);
 	}
 	
 	public Usuario Localizar(long id) {

@@ -2,8 +2,9 @@ package br.com.gamex.controlegamex.view;
 
 import java.io.IOException;
 
-import br.com.gamex.controlegamex.model.dao.ClienteDao;
+import br.com.gamex.controlegamex.controller.ClienteController;
 import br.com.gamex.controlegamex.model.entidade.Cliente;
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -28,7 +29,24 @@ public class ExcluirCliente extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		//response.getWriter().append("Served at: ").append(request.getContextPath());
+		
+		long id = 0;
+		
+		try {
+			id = Long.parseLong(request.getParameter("id"));
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		ClienteController controller = new ClienteController();
+		Cliente c = new Cliente();
+		c.setId(id);
+		
+		controller.Excluir(c);
+		
+		RequestDispatcher rd = request.getRequestDispatcher("testeLista.jsp");
+		rd.forward(request, response);
 	}
 
 	/**
@@ -36,23 +54,8 @@ public class ExcluirCliente extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		//doGet(request, response);
+		doGet(request, response);
 		
-		long id = 0;
-		
-		try {
-			id = Long.parseLong(request.getParameter("inputIdentificador"));
-		}catch(Exception e) {
-			e.printStackTrace();
-		}
-		
-		Cliente c = new Cliente();
-		c.setId(id);
-		
-		ClienteDao cdao = new ClienteDao();
-		cdao.Excluir(c);
-		
-		response.sendRedirect("");
 	}
 
 }

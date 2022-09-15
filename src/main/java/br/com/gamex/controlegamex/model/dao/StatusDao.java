@@ -2,6 +2,7 @@ package br.com.gamex.controlegamex.model.dao;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import br.com.gamex.controlegamex.model.entidade.Status;
@@ -9,8 +10,7 @@ import br.com.gamex.controlegamex.model.entidade.Venda;
 
 public class StatusDao extends Conexao {
 
-	public boolean Cadastrar(Status s) {
-		boolean ok = true;
+	public void Cadastrar(Status s) {
 		
 		String sql = "insert into status (status, venda_id) "
 				+ "values (?, ?)";
@@ -22,14 +22,12 @@ public class StatusDao extends Conexao {
 			
 			ps.execute();
 			
-		} catch(Exception e) {
+		} catch(SQLException e) {
 			e.printStackTrace();
-			ok = false;
 		} finally {
 			fecharConexao();
 		}
 		
-		return ok;
 	}
 
 	public ArrayList<Status> Listar(){
@@ -60,7 +58,7 @@ public class StatusDao extends Conexao {
 				
 				lista.add(s);
 			}
-		} catch(Exception e) {
+		} catch(SQLException e) {
 			e.printStackTrace();
 		} finally {
 			fecharConexao();

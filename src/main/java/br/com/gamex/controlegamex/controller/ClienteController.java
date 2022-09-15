@@ -17,8 +17,8 @@ public class ClienteController {
 		dao.Alterar(c);
 	}
 	
-	public ArrayList<Cliente> Listar(String nome) {
-		return dao.Listar(nome);
+	public ArrayList<Cliente> Listar(String nomeBusca) {
+		return dao.Listar(nomeBusca);
 	}
 	
 	public Cliente Localizar(long id) {

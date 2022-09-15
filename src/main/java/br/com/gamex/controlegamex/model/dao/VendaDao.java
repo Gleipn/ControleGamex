@@ -2,6 +2,7 @@ package br.com.gamex.controlegamex.model.dao;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import br.com.gamex.controlegamex.model.entidade.Cliente;
@@ -10,8 +11,7 @@ import br.com.gamex.controlegamex.model.entidade.Venda;
 
 public class VendaDao extends Conexao {
 	
-	public boolean Cadastrar(Venda v) {
-		boolean ok = true;
+	public void Cadastrar(Venda v) {
 		
 		String sql = "insert into venda (jogo_id, cliente_id) "
 				+ "values (?, ?)";
@@ -23,20 +23,19 @@ public class VendaDao extends Conexao {
 			
 			ps.execute();
 			
-		} catch(Exception e) {
+		} catch(SQLException e) {
+			System.out.println("Deu problema no insert");
 			e.printStackTrace();
-			ok = false;
 		} finally {
 			fecharConexao();
 		}
 		
-		return ok;
 	}
 
 	public ArrayList<Venda> Listar(){
 		ArrayList<Venda> lista = new ArrayList<Venda>();
 		
-		String sql = "select v.*, c.nome as cliente, j.nome as jogo from Venda v "
+		String sql = "select v.*, c.nome as cliente_nome, j.nome as jogo_nome from Venda v "
 				+ "inner join cliente c on c.id = v.cliente_id "
 				+ "inner join jogos j on j.id = v.jogo_id "
 				+ "order by v.criado_em";
@@ -54,8 +53,8 @@ public class VendaDao extends Conexao {
 				
 				
 				v = new Venda();
-				v.setId(rs.getLong("id_venda"));
-				v.setCriado_em(rs.getString("data_venda"));
+				v.setId(rs.getLong("venda_id"));
+				v.setCriado_em(rs.getString("criado_em"));
 				
 				c = new Cliente();
 				c.setId(rs.getLong("cliente_id"));
@@ -69,8 +68,9 @@ public class VendaDao extends Conexao {
 				
 				lista.add(v);
 			}
-		} catch(Exception e) {
+		} catch(SQLException e) {
 			e.printStackTrace();
+			System.out.println("Erro no Listar");
 		} finally {
 			fecharConexao();
 		}

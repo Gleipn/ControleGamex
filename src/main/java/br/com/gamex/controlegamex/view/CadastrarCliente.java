@@ -44,11 +44,6 @@ public class CadastrarCliente extends HttpServlet {
 		String endereco = request.getParameter("inputEndereco");
 		String telefone = request.getParameter("inputTelefone");
 		String email = request.getParameter("inputEmail");
-		System.out.println(cpf);
-		System.out.println(nome);
-		System.out.println(endereco);
-		System.out.println(telefone);
-		System.out.println(email);
 		
 		Cliente c = new Cliente();
 		c.setCpf(cpf);
@@ -60,7 +55,7 @@ public class CadastrarCliente extends HttpServlet {
 		ClienteController controller = new ClienteController();
 		controller.Cadastrar(c);
 		
-		RequestDispatcher rd = request.getRequestDispatcher("cadastro-cliente.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("testeLista.jsp");
 		rd.forward(request, response);
 	}
 
