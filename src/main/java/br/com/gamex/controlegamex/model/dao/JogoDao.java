@@ -5,11 +5,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import br.com.gamex.controlegamex.model.entidade.Jogos;
+import br.com.gamex.controlegamex.model.entidade.Jogo;
 
-public class JogosDao extends Conexao {
+public class JogoDao extends Conexao {
 	
-	public void Cadastrar(Jogos j) {
+	public void Cadastrar(Jogo j) {
 		
 		String sql = "insert into jogos (nome_jogo, categoria_jogo, desenvolvedor_jogo, "
 				+ "valor_jogo, estoque_jogo) "
@@ -33,8 +33,8 @@ public class JogosDao extends Conexao {
 		
 	}
 	
-	public ArrayList<Jogos> Listar(String nomeBusca) {
-		ArrayList<Jogos> lista = new ArrayList<Jogos>();
+	public ArrayList<Jogo> Listar(String nomeBusca) {
+		ArrayList<Jogo> lista = new ArrayList<Jogo>();
 		
 		String sql = "select * from jogos where nome_jogo like ? order by nome_jogo";
 		
@@ -44,9 +44,9 @@ public class JogosDao extends Conexao {
 			
 			ResultSet rs = ps.executeQuery();
 			
-			Jogos j;
+			Jogo j;
 			while(rs.next()) {
-				j = new Jogos();
+				j = new Jogo();
 				j.setNome(rs.getString("nome_jogo"));
 				j.setCategoria(rs.getString("categoria_jogo"));
 				j.setDesenvolvedor(rs.getString("desenvolvedor_jogo"));
@@ -66,8 +66,8 @@ public class JogosDao extends Conexao {
 		
 	}
 	
-	public Jogos Localizar(long id) {
-		Jogos j = null;
+	public Jogo Localizar(long id) {
+		Jogo j = null;
 		
 		String sql = "select * from jogos where id_jogo = ?";
 		
@@ -78,7 +78,7 @@ public class JogosDao extends Conexao {
 			ResultSet rs = ps.executeQuery();
 			
 			if(rs.next()) {
-				j = new Jogos();
+				j = new Jogo();
 				j.setNome(rs.getString("nome_jogo"));
 				j.setCategoria(rs.getString("categoria_jogo"));
 				j.setDesenvolvedor(rs.getString("desenvolvedor_jogo"));
@@ -97,7 +97,7 @@ public class JogosDao extends Conexao {
 		
 	}
 	
-	public void Alterar(Jogos j) {
+	public void Alterar(Jogo j) {
 		
 		String sql = "update jogos set nome_jogo = ?, categoria_jogo = ?, "
 				+ "desenvolvedor_jogo = ?, valor_jogo = ?, "
@@ -122,7 +122,7 @@ public class JogosDao extends Conexao {
 		
 	}
 	
-	public void Excluir(Jogos j) {
+	public void Excluir(Jogo j) {
 		
 		String sql = "delete from jogos where id_jogo = ?";
 		

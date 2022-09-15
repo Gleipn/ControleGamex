@@ -1,13 +1,14 @@
 package br.com.gamex.controlegamex.model.entidade;
 
-public class Jogos {
+public class Jogo {
 
 	private long id;
 	private String nome;
 	private String categoria;
 	private String desenvolvedor;
-	private String valor;
-	private String estoque;
+	private double valor;
+	private int estoque;
+	private String imagem;
 	private String criado_em;
 	
 	public long getId() {
@@ -34,17 +35,23 @@ public class Jogos {
 	public void setDesenvolvedor(String desenvolvedor) {
 		this.desenvolvedor = desenvolvedor;
 	}
-	public String getValor() {
+	public double getValor() {
 		return valor;
 	}
-	public void setValor(String valor) {
+	public void setValor(double valor) {
 		this.valor = valor;
 	}
-	public String getEstoque() {
+	public int getEstoque() {
 		return estoque;
 	}
-	public void setEstoque(String estoque) {
+	public void setEstoque(int estoque) {
 		this.estoque = estoque;
+	}
+	public String getImagem() {
+		return imagem;
+	}
+	public void setImagem(String imagem) {
+		this.imagem = imagem;
 	}
 	public String getCriado_em() {
 		return criado_em;

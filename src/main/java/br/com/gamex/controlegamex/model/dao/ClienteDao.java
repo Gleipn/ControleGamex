@@ -26,7 +26,7 @@ public class ClienteDao extends Conexao {
 			ps.execute();
 			
 		} catch(SQLException e) {
-			System.out.println("Deu problema no insert");
+			//System.out.println("Deu problema no insert");
 			e.printStackTrace();
 		} finally {
 			fecharConexao();
@@ -60,7 +60,7 @@ public class ClienteDao extends Conexao {
 				
 			}
 		} catch(SQLException e) { 
-			System.out.println("Erro no Listar");
+			//System.out.println("Erro no Listar");
 			e.printStackTrace();
 		} finally {
 			fecharConexao();
@@ -93,7 +93,7 @@ public class ClienteDao extends Conexao {
 			}
 			
 		} catch(SQLException e) { 
-			System.out.println("Erro no Localizar");
+			//System.out.println("Erro no Localizar");
 			e.printStackTrace();
 		} finally {
 			fecharConexao();
@@ -120,7 +120,7 @@ public class ClienteDao extends Conexao {
 			ps.execute();
 			
 		} catch(SQLException e) {
-			System.out.println("Erro no Update");
+			//System.out.println("Erro no Update");
 			e.printStackTrace();
 		} finally {
 			fecharConexao();
@@ -139,7 +139,7 @@ public class ClienteDao extends Conexao {
 			ps.execute();
 			
 		} catch(SQLException e) {
-			System.out.println("Erro na exclusao");
+			//System.out.println("Erro na exclusao");
 			e.printStackTrace();
 		} finally {
 			fecharConexao();

@@ -3,16 +3,14 @@ package br.com.gamex.controlegamex.model.entidade;
 public class Compra {
 
 	private long id;
-	private long nota_fiscal;
 	private String criado_em;
 	
 	private Fornecedor fornecedor;
-	private Jogos jogo;
+	private Jogo jogo;
 	
-	public Compra(long id, long nota_fiscal, String criado_em, Fornecedor fornecedor, Jogos jogo) {
+	public Compra(long id, String criado_em, Fornecedor fornecedor, Jogo jogo) {
 		super();
 		this.id = id;
-		this.nota_fiscal = nota_fiscal;
 		this.criado_em = criado_em;
 		this.fornecedor = fornecedor;
 		this.jogo = jogo;
@@ -21,10 +19,9 @@ public class Compra {
 	public Compra() {
 		super();
 		this.id = 0;
-		this.nota_fiscal = 0;
 		this.criado_em = "";
 		this.fornecedor = new Fornecedor();
-		this.jogo = new Jogos();
+		this.jogo = new Jogo();
 	}
 	
 	public long getId() {
@@ -32,12 +29,6 @@ public class Compra {
 	}
 	public void setId(long id) {
 		this.id = id;
-	}
-	public long getNota_fiscal() {
-		return nota_fiscal;
-	}
-	public void setNota_fiscal(long nota_fiscal) {
-		this.nota_fiscal = nota_fiscal;
 	}
 	public String getCriado_em() {
 		return criado_em;
@@ -51,10 +42,10 @@ public class Compra {
 	public void setFornecedor(Fornecedor fornecedor) {
 		this.fornecedor = fornecedor;
 	}
-	public Jogos getJogo() {
+	public Jogo getJogo() {
 		return jogo;
 	}
-	public void setJogo(Jogos jogo) {
+	public void setJogo(Jogo jogo) {
 		this.jogo = jogo;
 	}
 	

@@ -12,12 +12,12 @@ public class StatusDao extends Conexao {
 
 	public void Cadastrar(Status s) {
 		
-		String sql = "insert into status (status, venda_id) "
+		String sql = "insert into status (situacao_status, venda_id) "
 				+ "values (?, ?)";
 		
 		try {
 			PreparedStatement ps = criarConexao().prepareStatement(sql);
-			ps.setString(1, s.getStatus());
+			ps.setString(1, s.getSituacao());
 			ps.setLong(2, s.getVenda().getId());
 			
 			ps.execute();

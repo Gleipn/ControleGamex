@@ -2,8 +2,8 @@ package br.com.gamex.controlegamex.view;
 
 import java.io.IOException;
 
-import br.com.gamex.controlegamex.controller.JogosController;
-import br.com.gamex.controlegamex.model.entidade.Jogos;
+import br.com.gamex.controlegamex.controller.JogoController;
+import br.com.gamex.controlegamex.model.entidade.Jogo;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
@@ -13,13 +13,13 @@ import jakarta.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class CadastrarJogos
  */
-public class CadastrarJogos extends HttpServlet {
+public class CadastrarJogo extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public CadastrarJogos() {
+    public CadastrarJogo() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -45,14 +45,14 @@ public class CadastrarJogos extends HttpServlet {
 		String valor = request.getParameter("inputValor");
 		String estoque = request.getParameter("inputEstoque");
 		
-		Jogos j = new Jogos();
+		Jogo j = new Jogo();
 		j.setNome(nome);
 		j.setCategoria(categoria);
 		j.setDesenvolvedor(desenvolvedor);
 		j.setValor(valor);
 		j.setEstoque(estoque);
 		
-		JogosController controller = new JogosController();
+		JogoController controller = new JogoController();
 		controller.Cadastrar(j);
 		
 		RequestDispatcher rd = request.getRequestDispatcher("");

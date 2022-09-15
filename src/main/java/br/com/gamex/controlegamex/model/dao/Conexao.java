@@ -6,7 +6,7 @@ import java.sql.SQLException;
 
 public class Conexao {
 	
-	private String caminho = "jdbc:mysql://localhost:3306/cursoja"; //Caminho da base de dados
+	private String caminho = "jdbc:mysql://localhost:3306/gamex"; //Caminho da base de dados
 	private String usuario = "root"; //Usuario do banco de dados
 	private String senha = ""; //Senha do banco de dados
 
@@ -15,14 +15,14 @@ public class Conexao {
 	public Connection criarConexao() {
 		try {
 			//Class.forName("com.mysql.jdbc.Driver"); Driver antigo
-			  Class.forName("com.mysql.cj.jdbc.Driver"); //Novo Driver
+			Class.forName("com.mysql.cj.jdbc.Driver"); //Novo Driver
 			conn = DriverManager.getConnection(caminho, usuario, senha);
-			System.out.println("Conectado com sucesso");
+			//System.out.println("Conectado com sucesso");
 		} catch (ClassNotFoundException e) {
-			System.out.println("Nao encontrou o Driver");
+			//System.out.println("Nao encontrou o Driver");
 			e.printStackTrace();
 		} catch (SQLException e) {
-			System.out.println("Erro ao acessar o banco de dados");
+			//System.out.println("Erro ao acessar o banco de dados");
 			e.printStackTrace();
 		}
 		return conn;
@@ -31,9 +31,9 @@ public class Conexao {
 	public void fecharConexao() {
 		try {
 			conn.close();
-			System.out.println("Conexao fechada");
+			//System.out.println("Conexao fechada");
 		} catch (SQLException e) {
-			System.out.println("Deu problema");
+			//System.out.println("Deu problema");
 			e.printStackTrace();
 		}
 	}

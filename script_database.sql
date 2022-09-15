@@ -5,56 +5,56 @@ use gamex;
 -- table cliente
 create table cliente (
 id_cliente bigint not null auto_increment,
-cpf_cliente varchar(20) UNIQUE NOT NULL,
-nome_cliente varchar(120) not NULL,
+cpf_cliente varchar(20) unique not null,
+nome_cliente varchar(255) not null,
 endereco_cliente varchar(255) not null,
 telefone_cliente varchar(20) not null,
-email_cliente varchar(120) not null,
+email_cliente varchar(255) not null,
 criado_em timestamp not null default current_timestamp,
-PRIMARY KEY (id_cliente)
+primary key (id_cliente)
 ) engine = innodb;
 
 -- table fornecedor
 create table fornecedor (
 id_fornecedor bigint not null auto_increment,
-cnpj_fornecedor varchar(20) NOT NULL,
-nome_fornecedor varchar(120) NOT NULL,
-endereco_fornecedor varchar(120) NOT NULL,
-email_fornecedor varchar(120) not NULL,
+cnpj_fornecedor varchar(20) not null,
+nome_fornecedor varchar(255) not null,
+endereco_fornecedor varchar(255) not null,
+email_fornecedor varchar(255) not null,
 criado_em timestamp not null default current_timestamp,
-PRIMARY KEY (id_fornecedor)
+primary key (id_fornecedor)
 ) engine = innodb;
 
 -- table jogo
 create table jogo (
 id_jogo bigint not null auto_increment,
-nome_jogo varchar(120) not null,
-categoria_jogo varchar(120) not null,
-desenvolvedor_jogo varchar(120) not null,
+nome_jogo varchar(255) not null,
+categoria_jogo varchar(255) not null,
+desenvolvedor_jogo varchar(255) not null,
 valor_jogo numeric (5, 2) not null,
 estoque_jogo int not null,
+imagem_jogo varchar(255),
 criado_em timestamp not null default current_timestamp,
- PRIMARY KEY (id_jogo)
+ primary key (id_jogo)
 ) engine = innodb;
 
 -- table usuario
 create table usuario (
 id_usuario bigint not null auto_increment,
-cpf_usuario varchar(20) not null,
-nome_usuario varchar(120) not null,
-email_usuario varchar(120) not null,
-senha_usuario varchar(120) not null,
+nome_usuario varchar(255) not null,
+email_usuario varchar(255) not null,
+senha_usuario varchar(255) not null,
 criado_em timestamp not null default current_timestamp,
-PRIMARY KEY (id_usuario)
+primary key (id_usuario)
 ) engine = innodb;
 
 -- table venda
 create table venda (
 id_venda bigint not null auto_increment,
-jogo_id bigint not NULL,
-cliente_id bigint not NULL,
+jogo_id bigint not null,
+cliente_id bigint not null,
 criado_em timestamp not null default current_timestamp,
-PRIMARY KEY (id_venda),
+primary key (id_venda),
 foreign key(jogo_id) references jogo(id_jogo),
 foreign key(cliente_id) references cliente(id_cliente)
 ) engine = innodb;
@@ -62,10 +62,10 @@ foreign key(cliente_id) references cliente(id_cliente)
 -- table compra
 create table compra (
 id_compra bigint not null auto_increment,
-fornecedor_id bigint not NULL,
-jogo_id bigint not NULL,
+fornecedor_id bigint not null,
+jogo_id bigint not null,
 criado_em timestamp not null default current_timestamp,
-PRIMARY KEY (id_compra),
+primary key (id_compra),
 foreign key(fornecedor_id) references fornecedor(id_fornecedor),
 foreign key(jogo_id) references jogo(id_jogo)
 ) engine = innodb;
@@ -73,22 +73,21 @@ foreign key(jogo_id) references jogo(id_jogo)
 -- table status
 create table status (
 id_status bigint not null auto_increment,
-situacao_status varchar(120) NOT NULL,
-venda_id bigint not NULL,
+situacao_status varchar(255) not null,
+venda_id bigint not null,
 criado_em timestamp not null default current_timestamp,
- PRIMARY KEY (id_status),
+ primary key (id_status),
  foreign key(venda_id) references venda(id_venda)
 ) engine = innodb;
 
 -- table feedback
 create table feedback (
 id_feedback bigint not null auto_increment,
-feedback varchar(255) NOT NULL,
+comentario_feedback varchar(255) not null,
 venda_id bigint not null,
 criado_em timestamp not null default current_timestamp,
-PRIMARY KEY (id_feedback),
+primary key (id_feedback),
 foreign key(venda_id) references venda(id_venda)
 ) engine = innodb;
 
-
-insert into usuario(cpf_usuario, nome_usuario, email_usuario, senha_usuario) values ('1', 'Adminstrador', 'admin', md5('admin123'));
+insert into usuario(nome_usuario, email_usuario, senha_usuario) values ('adminstrador', 'admin@admin.com', md5('admin123'));

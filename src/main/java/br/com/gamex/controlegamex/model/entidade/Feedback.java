@@ -3,15 +3,15 @@ package br.com.gamex.controlegamex.model.entidade;
 public class Feedback {
 
 	private long id;
-	private String feedback;
+	private String comentario;
 	private String criado_em;
 	
 	private Venda venda;
 
-	public Feedback(long id, String feedback, String criado_em, Venda venda) {
+	public Feedback(long id, String comentario, String criado_em, Venda venda) {
 		super();
 		this.id = id;
-		this.feedback = feedback;
+		this.comentario = comentario;
 		this.criado_em = criado_em;
 		this.venda = venda;
 	}
@@ -19,7 +19,7 @@ public class Feedback {
 	public Feedback() {
 		super();
 		this.id = 0;
-		this.feedback = "";
+		this.comentario = "";
 		this.criado_em = "";
 		this.venda = new Venda();
 	}
@@ -32,12 +32,12 @@ public class Feedback {
 		this.id = id;
 	}
 
-	public String getFeedback() {
-		return feedback;
+	public String getComentario() {
+		return comentario;
 	}
 
-	public void setFeedback(String feedback) {
-		this.feedback = feedback;
+	public void setComentario(String comentario) {
+		this.comentario = comentario;
 	}
 
 	public String getCriado_em() {

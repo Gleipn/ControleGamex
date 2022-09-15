@@ -8,19 +8,19 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-import br.com.gamex.controlegamex.controller.JogosController;
-import br.com.gamex.controlegamex.model.entidade.Jogos;
+import br.com.gamex.controlegamex.controller.JogoController;
+import br.com.gamex.controlegamex.model.entidade.Jogo;
 
 /**
- * Servlet implementation class ExcluirJogos
+ * Servlet implementation class IniciarAlterarJogos
  */
-public class ExcluirJogos extends HttpServlet {
+public class IniciarAlterarJogo extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ExcluirJogos() {
+    public IniciarAlterarJogo() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -36,15 +36,15 @@ public class ExcluirJogos extends HttpServlet {
 		
 		try {
 			id = Long.parseLong(request.getParameter("id"));
-		}catch(Exception e) {
+			
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
-		JogosController controller = new JogosController();
-		Jogos j = new Jogos();
-		j.setId(id);
+		JogoController controller = new JogoController();
+		Jogo j = controller.Localizar(id);
 		
-		controller.Excluir(j);
+		request.setAttribute("fornecedor", j);
 		
 		RequestDispatcher rd = request.getRequestDispatcher("");
 		rd.forward(request, response);

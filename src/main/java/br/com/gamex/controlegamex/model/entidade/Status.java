@@ -3,15 +3,15 @@ package br.com.gamex.controlegamex.model.entidade;
 public class Status {
 
 	private long id;
-	private String status;
+	private String situacao;
 	private String criado_em;
 	
 	private Venda venda;
 
-	public Status(long id, String status, String criado_em, Venda venda) {
+	public Status(long id, String situacao, String criado_em, Venda venda) {
 		super();
 		this.id = id;
-		this.status = status;
+		this.situacao = situacao;
 		this.criado_em = criado_em;
 		this.venda = venda;
 	}
@@ -19,7 +19,7 @@ public class Status {
 	public Status() {
 		super();
 		this.id = 0;
-		this.status = "";
+		this.situacao = "";
 		this.criado_em = "";
 		this.venda = new Venda();
 	}
@@ -32,12 +32,12 @@ public class Status {
 		this.id = id;
 	}
 
-	public String getStatus() {
-		return status;
+	public String getSituacao() {
+		return situacao;
 	}
 
-	public void setStatus(String status) {
-		this.status = status;
+	public void setSituacao(String situacao) {
+		this.situacao = situacao;
 	}
 
 	public String getCriado_em() {

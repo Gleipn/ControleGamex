@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import br.com.gamex.controlegamex.model.entidade.Cliente;
-import br.com.gamex.controlegamex.model.entidade.Jogos;
+import br.com.gamex.controlegamex.model.entidade.Jogo;
 import br.com.gamex.controlegamex.model.entidade.Venda;
 
 public class VendaDao extends Conexao {
@@ -24,7 +24,6 @@ public class VendaDao extends Conexao {
 			ps.execute();
 			
 		} catch(SQLException e) {
-			System.out.println("Deu problema no insert");
 			e.printStackTrace();
 		} finally {
 			fecharConexao();
@@ -47,7 +46,7 @@ public class VendaDao extends Conexao {
 			
 			Venda v = null;
 			Cliente c = null;
-			Jogos j = null;
+			Jogo j = null;
 			
 			while(rs.next()) {
 				
@@ -61,7 +60,7 @@ public class VendaDao extends Conexao {
 				c.setNome(rs.getString("cliente_nome"));
 				v.setCliente(c);
 				
-				j = new Jogos();
+				j = new Jogo();
 				j.setId(rs.getLong("jogo_id"));
 				j.setNome(rs.getString("jogo_nome"));
 				v.setJogo(j);
@@ -70,7 +69,6 @@ public class VendaDao extends Conexao {
 			}
 		} catch(SQLException e) {
 			e.printStackTrace();
-			System.out.println("Erro no Listar");
 		} finally {
 			fecharConexao();
 		}

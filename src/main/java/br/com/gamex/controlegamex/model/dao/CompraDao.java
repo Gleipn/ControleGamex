@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 import br.com.gamex.controlegamex.model.entidade.Compra;
 import br.com.gamex.controlegamex.model.entidade.Fornecedor;
-import br.com.gamex.controlegamex.model.entidade.Jogos;
+import br.com.gamex.controlegamex.model.entidade.Jogo;
 
 public class CompraDao extends Conexao {
 	
@@ -24,7 +24,6 @@ public class CompraDao extends Conexao {
 			ps.execute();
 			
 		} catch(SQLException e) {
-			System.out.println("Deu problema no insert");
 			e.printStackTrace();
 		} finally {
 			fecharConexao();
@@ -47,7 +46,7 @@ public class CompraDao extends Conexao {
 			
 			Compra c = null;
 			Fornecedor f = null;
-			Jogos j = null;
+			Jogo j = null;
 			
 			while(rs.next()) {
 				
@@ -61,7 +60,7 @@ public class CompraDao extends Conexao {
 				f.setNome(rs.getString("fornecedor_nome"));
 				c.setFornecedor(f);
 				
-				j = new Jogos();
+				j = new Jogo();
 				j.setId(rs.getLong("jogo_id"));
 				j.setNome(rs.getString("jogo_nome"));
 				c.setJogo(j);
@@ -69,7 +68,6 @@ public class CompraDao extends Conexao {
 				lista.add(c);
 			}
 		} catch(SQLException e) {
-			System.out.println("Erro no Listar");
 			e.printStackTrace();
 		} finally {
 			fecharConexao();

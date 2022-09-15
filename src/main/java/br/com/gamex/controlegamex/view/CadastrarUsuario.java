@@ -39,7 +39,7 @@ public class CadastrarUsuario extends HttpServlet {
 		// TODO Auto-generated method stub
 		//doGet(request, response);
 		
-		String cpf = request.getParameter("inputCnpj");
+		String cpf = request.getParameter("inputCpf");
 		String nome = request.getParameter("inputNome");
 		String email = request.getParameter("inputEmail");
 		String senha = request.getParameter("inputSenha");

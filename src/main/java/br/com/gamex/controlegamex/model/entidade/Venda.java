@@ -5,10 +5,10 @@ public class Venda {
 	private long id;
 	private String criado_em;
 	
-	private Jogos jogo;
+	private Jogo jogo;
 	private Cliente cliente;
 	
-	public Venda(long id, String criado_em, Jogos jogo, Cliente cliente) {
+	public Venda(long id, String criado_em, Jogo jogo, Cliente cliente) {
 		super();
 		this.id = id;
 		this.criado_em = criado_em;
@@ -20,7 +20,7 @@ public class Venda {
 		super();
 		this.id = 0;
 		this.criado_em = "";
-		this.jogo = new Jogos();
+		this.jogo = new Jogo();
 		this.cliente = new Cliente();
 	}
 
@@ -40,11 +40,11 @@ public class Venda {
 		this.criado_em = criado_em;
 	}
 
-	public Jogos getJogo() {
+	public Jogo getJogo() {
 		return jogo;
 	}
 
-	public void setJogo(Jogos jogo) {
+	public void setJogo(Jogo jogo) {
 		this.jogo = jogo;
 	}
 

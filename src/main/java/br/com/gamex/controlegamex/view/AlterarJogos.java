@@ -2,8 +2,8 @@ package br.com.gamex.controlegamex.view;
 
 import java.io.IOException;
 
-import br.com.gamex.controlegamex.controller.JogosController;
-import br.com.gamex.controlegamex.model.entidade.Jogos;
+import br.com.gamex.controlegamex.controller.JogoController;
+import br.com.gamex.controlegamex.model.entidade.Jogo;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
@@ -53,14 +53,14 @@ public class AlterarJogos extends HttpServlet {
 			e.printStackTrace();
 		}
 		
-		Jogos j = new Jogos();
+		Jogo j = new Jogo();
 		j.setNome(nome);
 		j.setCategoria(categoria);
 		j.setDesenvolvedor(desenvolvedor);
 		j.setValor(valor);
 		j.setEstoque(estoque);
 		
-		JogosController controller = new JogosController();
+		JogoController controller = new JogoController();
 		controller.Alterar(j);
 		
 		RequestDispatcher rd = request.getRequestDispatcher("");
