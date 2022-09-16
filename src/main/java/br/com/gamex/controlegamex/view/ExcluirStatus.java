@@ -2,8 +2,8 @@ package br.com.gamex.controlegamex.view;
 
 import java.io.IOException;
 
-import br.com.gamex.controlegamex.controller.UsuarioController;
-import br.com.gamex.controlegamex.model.entidade.Usuario;
+import br.com.gamex.controlegamex.controller.StatusController;
+import br.com.gamex.controlegamex.model.entidade.Status;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
@@ -11,15 +11,15 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class CadastrarUsuario
+ * Servlet implementation class ExcluirStatus
  */
-public class CadastrarUsuario extends HttpServlet {
+public class ExcluirStatus extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public CadastrarUsuario() {
+    public ExcluirStatus() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -29,7 +29,24 @@ public class CadastrarUsuario extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		//response.getWriter().append("Served at: ").append(request.getContextPath());
+		
+		long id = 0;
+		
+		try {
+			id = Long.parseLong(request.getParameter("id"));
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		StatusController controller = new StatusController();
+		Status s = new Status();
+		s.setId(id);
+		
+		controller.Excluir(s);
+		
+		RequestDispatcher rd = request.getRequestDispatcher("");
+		rd.forward(request, response);
 	}
 
 	/**
@@ -37,24 +54,7 @@ public class CadastrarUsuario extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		//doGet(request, response);
-		
-		String cpf = request.getParameter("inputCpf");
-		String nome = request.getParameter("inputNome");
-		String email = request.getParameter("inputEmail");
-		String senha = request.getParameter("inputSenha");
-		
-		Usuario u = new Usuario();
-		u.setCpf(cpf);
-		u.setNome(nome);
-		u.setEmail(email);
-		u.setSenha(senha);
-		
-		UsuarioController controller = new UsuarioController();
-		controller.Cadastrar(u);
-		
-		RequestDispatcher rd = request.getRequestDispatcher("");
-		rd.forward(request, response);
+		doGet(request, response);
 	}
 
 }

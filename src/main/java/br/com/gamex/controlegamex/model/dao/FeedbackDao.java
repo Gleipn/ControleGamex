@@ -12,12 +12,12 @@ public class FeedbackDao extends Conexao {
 
 	public void Cadastrar(Feedback f) {
 		
-		String sql = "insert into feedback (feedback, venda_id) "
+		String sql = "insert into comentario (comentario_feedback, venda_id) "
 				+ "values (?, ?)";
 		
 		try {
 			PreparedStatement ps = criarConexao().prepareStatement(sql);
-			ps.setString(1, f.getFeedback());
+			ps.setString(1, f.getComentario());
 			ps.setLong(2, f.getVenda().getId());
 			
 			ps.execute();
@@ -51,7 +51,7 @@ public class FeedbackDao extends Conexao {
 				f = new Feedback();
 				
 				f.setId(rs.getLong("id_feedback"));
-				f.setFeedback(rs.getString("feedback"));
+				f.setComentario(rs.getString("comentario_feedback"));
 				f.setCriado_em(rs.getString("criado_em"));
 				
 				v = new Venda();

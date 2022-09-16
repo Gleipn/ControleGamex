@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="https://jakarta.ee/xml/ns/jakartaee" xmlns:web="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_5_0.xsd" version="5.0">
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="https://jakarta.ee/xml/ns/jakartaee" xmlns:web="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_5_0.xsd http://xmlns.jcp.org/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="5.0">
   <display-name>ControleGamex</display-name>
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
@@ -91,82 +91,162 @@
   </servlet-mapping>
   <servlet>
     <description></description>
-    <display-name>CadastrarUsuario</display-name>
-    <servlet-name>CadastrarUsuario</servlet-name>
-    <servlet-class>br.com.gamex.controlegamex.view.CadastrarUsuario</servlet-class>
+    <display-name>AlterarCompra</display-name>
+    <servlet-name>AlterarCompra</servlet-name>
+    <servlet-class>br.com.gamex.controlegamex.view.AlterarCompra</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>CadastrarUsuario</servlet-name>
-    <url-pattern>/CadastrarUsuario</url-pattern>
+    <servlet-name>AlterarCompra</servlet-name>
+    <url-pattern>/AlterarCompra</url-pattern>
   </servlet-mapping>
   <servlet>
     <description></description>
-    <display-name>ExcluirUsuario</display-name>
-    <servlet-name>ExcluirUsuario</servlet-name>
-    <servlet-class>br.com.gamex.controlegamex.view.ExcluirUsuario</servlet-class>
+    <display-name>CadastrarCompra</display-name>
+    <servlet-name>CadastrarCompra</servlet-name>
+    <servlet-class>br.com.gamex.controlegamex.view.CadastrarCompra</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>ExcluirUsuario</servlet-name>
-    <url-pattern>/ExcluirUsuario</url-pattern>
+    <servlet-name>CadastrarCompra</servlet-name>
+    <url-pattern>/CadastrarCompra</url-pattern>
   </servlet-mapping>
   <servlet>
     <description></description>
-    <display-name>IniciarAlterarUsuario</display-name>
-    <servlet-name>IniciarAlterarUsuario</servlet-name>
-    <servlet-class>br.com.gamex.controlegamex.view.IniciarAlterarUsuario</servlet-class>
+    <display-name>ExcluirCompra</display-name>
+    <servlet-name>ExcluirCompra</servlet-name>
+    <servlet-class>br.com.gamex.controlegamex.view.ExcluirCompra</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>IniciarAlterarUsuario</servlet-name>
-    <url-pattern>/IniciarAlterarUsuario</url-pattern>
+    <servlet-name>ExcluirCompra</servlet-name>
+    <url-pattern>/ExcluirCompra</url-pattern>
   </servlet-mapping>
   <servlet>
     <description></description>
-    <display-name>AlterarUsuario</display-name>
-    <servlet-name>AlterarUsuario</servlet-name>
-    <servlet-class>br.com.gamex.controlegamex.view.AlterarUsuario</servlet-class>
+    <display-name>IniciarAlterarCompra</display-name>
+    <servlet-name>IniciarAlterarCompra</servlet-name>
+    <servlet-class>br.com.gamex.controlegamex.view.IniciarAlterarCompra</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>AlterarUsuario</servlet-name>
-    <url-pattern>/AlterarUsuario</url-pattern>
+    <servlet-name>IniciarAlterarCompra</servlet-name>
+    <url-pattern>/IniciarAlterarCompra</url-pattern>
   </servlet-mapping>
   <servlet>
     <description></description>
-    <display-name>CadastrarJogos</display-name>
-    <servlet-name>CadastrarJogos</servlet-name>
-    <servlet-class>br.com.gamex.controlegamex.view.CadastrarJogos</servlet-class>
+    <display-name>AlterarVenda</display-name>
+    <servlet-name>AlterarVenda</servlet-name>
+    <servlet-class>br.com.gamex.controlegamex.view.AlterarVenda</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>CadastrarJogos</servlet-name>
-    <url-pattern>/CadastrarJogos</url-pattern>
+    <servlet-name>AlterarVenda</servlet-name>
+    <url-pattern>/AlterarVenda</url-pattern>
   </servlet-mapping>
   <servlet>
     <description></description>
-    <display-name>ExcluirJogos</display-name>
-    <servlet-name>ExcluirJogos</servlet-name>
-    <servlet-class>br.com.gamex.controlegamex.view.ExcluirJogos</servlet-class>
+    <display-name>CadastrarVenda</display-name>
+    <servlet-name>CadastrarVenda</servlet-name>
+    <servlet-class>br.com.gamex.controlegamex.view.CadastrarVenda</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>ExcluirJogos</servlet-name>
-    <url-pattern>/ExcluirJogos</url-pattern>
+    <servlet-name>CadastrarVenda</servlet-name>
+    <url-pattern>/CadastrarVenda</url-pattern>
   </servlet-mapping>
   <servlet>
     <description></description>
-    <display-name>IniciarAlterarJogos</display-name>
-    <servlet-name>IniciarAlterarJogos</servlet-name>
-    <servlet-class>br.com.gamex.controlegamex.view.IniciarAlterarJogos</servlet-class>
+    <display-name>ExcluirVenda</display-name>
+    <servlet-name>ExcluirVenda</servlet-name>
+    <servlet-class>br.com.gamex.controlegamex.view.ExcluirVenda</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>IniciarAlterarJogos</servlet-name>
-    <url-pattern>/IniciarAlterarJogos</url-pattern>
+    <servlet-name>ExcluirVenda</servlet-name>
+    <url-pattern>/ExcluirVenda</url-pattern>
   </servlet-mapping>
   <servlet>
     <description></description>
-    <display-name>AlterarJogos</display-name>
-    <servlet-name>AlterarJogos</servlet-name>
-    <servlet-class>br.com.gamex.controlegamex.view.AlterarJogos</servlet-class>
+    <display-name>IniciarAlterarVenda</display-name>
+    <servlet-name>IniciarAlterarVenda</servlet-name>
+    <servlet-class>br.com.gamex.controlegamex.view.IniciarAlterarVenda</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>AlterarJogos</servlet-name>
-    <url-pattern>/AlterarJogos</url-pattern>
+    <servlet-name>IniciarAlterarVenda</servlet-name>
+    <url-pattern>/IniciarAlterarVenda</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>CadastrarStatus</display-name>
+    <servlet-name>CadastrarStatus</servlet-name>
+    <servlet-class>br.com.gamex.controlegamex.view.CadastrarStatus</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CadastrarStatus</servlet-name>
+    <url-pattern>/CadastrarStatus</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>CadastrarFeedback</display-name>
+    <servlet-name>CadastrarFeedback</servlet-name>
+    <servlet-class>br.com.gamex.controlegamex.view.CadastrarFeedback</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CadastrarFeedback</servlet-name>
+    <url-pattern>/CadastrarFeedback</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>AlterarFeedback</display-name>
+    <servlet-name>AlterarFeedback</servlet-name>
+    <servlet-class>br.com.gamex.controlegamex.view.AlterarFeedback</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AlterarFeedback</servlet-name>
+    <url-pattern>/AlterarFeedback</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>AlterarStatus</display-name>
+    <servlet-name>AlterarStatus</servlet-name>
+    <servlet-class>br.com.gamex.controlegamex.view.AlterarStatus</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AlterarStatus</servlet-name>
+    <url-pattern>/AlterarStatus</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ExcluirFeedback</display-name>
+    <servlet-name>ExcluirFeedback</servlet-name>
+    <servlet-class>br.com.gamex.controlegamex.view.ExcluirFeedback</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ExcluirFeedback</servlet-name>
+    <url-pattern>/ExcluirFeedback</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ExcluirStatus</display-name>
+    <servlet-name>ExcluirStatus</servlet-name>
+    <servlet-class>br.com.gamex.controlegamex.view.ExcluirStatus</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ExcluirStatus</servlet-name>
+    <url-pattern>/ExcluirStatus</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>IniciarAlterarFeedback</display-name>
+    <servlet-name>IniciarAlterarFeedback</servlet-name>
+    <servlet-class>br.com.gamex.controlegamex.view.IniciarAlterarFeedback</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>IniciarAlterarFeedback</servlet-name>
+    <url-pattern>/IniciarAlterarFeedback</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>IniciarAlterarStatus</display-name>
+    <servlet-name>IniciarAlterarStatus</servlet-name>
+    <servlet-class>br.com.gamex.controlegamex.view.IniciarAlterarStatus</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>IniciarAlterarStatus</servlet-name>
+    <url-pattern>/IniciarAlterarStatus</url-pattern>
   </servlet-mapping>
 </web-app>

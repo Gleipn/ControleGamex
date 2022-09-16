@@ -7,7 +7,7 @@ public class Jogo {
 	private String categoria;
 	private String desenvolvedor;
 	private double valor;
-	private int estoque;
+	private long estoque;
 	private String imagem;
 	private String criado_em;
 	
@@ -41,10 +41,10 @@ public class Jogo {
 	public void setValor(double valor) {
 		this.valor = valor;
 	}
-	public int getEstoque() {
+	public long getEstoque() {
 		return estoque;
 	}
-	public void setEstoque(int estoque) {
+	public void setEstoque(long estoque) {
 		this.estoque = estoque;
 	}
 	public String getImagem() {
