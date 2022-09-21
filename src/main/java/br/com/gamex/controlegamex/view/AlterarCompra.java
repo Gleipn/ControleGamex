@@ -2,7 +2,9 @@ package br.com.gamex.controlegamex.view;
 
 import java.io.IOException;
 
-import br.com.gamex.controlegamex.controller.JogoController;
+import br.com.gamex.controlegamex.controller.CompraController;
+import br.com.gamex.controlegamex.model.entidade.Compra;
+import br.com.gamex.controlegamex.model.entidade.Fornecedor;
 import br.com.gamex.controlegamex.model.entidade.Jogo;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -11,15 +13,15 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class CadastrarJogos
+ * Servlet implementation class AlterarCompra
  */
-public class CadastrarJogo extends HttpServlet {
+public class AlterarCompra extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public CadastrarJogo() {
+    public AlterarCompra() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -39,21 +41,36 @@ public class CadastrarJogo extends HttpServlet {
 		// TODO Auto-generated method stub
 		//doGet(request, response);
 		
-		String nome = request.getParameter("inputNome");
-		String categoria = request.getParameter("inputCategoria");
-		String desenvolvedor = request.getParameter("inputDesenvolvedor");
-		String valor = request.getParameter("inputValor");
-		String estoque = request.getParameter("inputEstoque");
+		String id_fornecedor = request.getParameter("inputFornecedor");
+		String id_jogo = request.getParameter("inputJogo");
 		
+		long id = 0;
+		
+		try {
+			id = Long.parseLong(request.getParameter("InputIdentificador"));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		Fornecedor f = new Fornecedor();
+		try {
+			f.setId(Long.parseLong(id_fornecedor));
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
 		Jogo j = new Jogo();
-		j.setNome(nome);
-		j.setCategoria(categoria);
-		j.setDesenvolvedor(desenvolvedor);
-		j.setValor(valor);
-		j.setEstoque(estoque);
+		try {
+			j.setId(Long.parseLong(id_jogo));
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
 		
-		JogoController controller = new JogoController();
-		controller.Cadastrar(j);
+		Compra c = new Compra();
+		c.setFornecedor(f);
+		c.setJogo(j);
+		
+		CompraController controller = new CompraController();
+		controller.Alterar(c);
 		
 		RequestDispatcher rd = request.getRequestDispatcher("");
 		rd.forward(request, response);

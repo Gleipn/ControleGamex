@@ -2,8 +2,8 @@ package br.com.gamex.controlegamex.view;
 
 import java.io.IOException;
 
-import br.com.gamex.controlegamex.controller.UsuarioController;
-import br.com.gamex.controlegamex.model.entidade.Usuario;
+import br.com.gamex.controlegamex.controller.CompraController;
+import br.com.gamex.controlegamex.model.entidade.Compra;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
@@ -11,15 +11,15 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class IniciarAlterarUsuario
+ * Servlet implementation class ExcluirCompra
  */
-public class IniciarAlterarUsuario extends HttpServlet {
+public class ExcluirCompra extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public IniciarAlterarUsuario() {
+    public ExcluirCompra() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -35,15 +35,15 @@ public class IniciarAlterarUsuario extends HttpServlet {
 		
 		try {
 			id = Long.parseLong(request.getParameter("id"));
-			
-		} catch (Exception e) {
+		}catch(Exception e) {
 			e.printStackTrace();
 		}
 		
-		UsuarioController controller = new UsuarioController();
-		Usuario u = controller.Localizar(id);
+		CompraController controller = new CompraController();
+		Compra c = new Compra();
+		c.setId(id);
 		
-		request.setAttribute("fornecedor", u);
+		controller.Excluir(c);
 		
 		RequestDispatcher rd = request.getRequestDispatcher("");
 		rd.forward(request, response);

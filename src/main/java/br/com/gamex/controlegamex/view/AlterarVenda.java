@@ -2,8 +2,10 @@ package br.com.gamex.controlegamex.view;
 
 import java.io.IOException;
 
-import br.com.gamex.controlegamex.controller.JogoController;
+import br.com.gamex.controlegamex.controller.VendaController;
+import br.com.gamex.controlegamex.model.entidade.Cliente;
 import br.com.gamex.controlegamex.model.entidade.Jogo;
+import br.com.gamex.controlegamex.model.entidade.Venda;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
@@ -11,15 +13,15 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class AlterarJogos
+ * Servlet implementation class AlterarVenda
  */
-public class AlterarJogos extends HttpServlet {
+public class AlterarVenda extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AlterarJogos() {
+    public AlterarVenda() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -39,11 +41,8 @@ public class AlterarJogos extends HttpServlet {
 		// TODO Auto-generated method stub
 		//doGet(request, response);
 		
-		String nome = request.getParameter("inputNome");
-		String categoria = request.getParameter("inputCategoria");
-		String desenvolvedor = request.getParameter("inputDesenvolvedor");
-		String valor = request.getParameter("inputValor");
-		String estoque = request.getParameter("inputEstoque");
+		String id_cliente = request.getParameter("inputCliente");
+		String id_jogo = request.getParameter("inputJogo");
 		
 		long id = 0;
 		
@@ -53,15 +52,25 @@ public class AlterarJogos extends HttpServlet {
 			e.printStackTrace();
 		}
 		
+		Cliente c = new Cliente();
+		try {
+			c.setId(Long.parseLong(id_cliente));
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
 		Jogo j = new Jogo();
-		j.setNome(nome);
-		j.setCategoria(categoria);
-		j.setDesenvolvedor(desenvolvedor);
-		j.setValor(valor);
-		j.setEstoque(estoque);
+		try {
+			j.setId(Long.parseLong(id_jogo));
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
 		
-		JogoController controller = new JogoController();
-		controller.Alterar(j);
+		Venda v = new Venda();
+		v.setCliente(c);
+		v.setJogo(j);
+		
+		VendaController controller = new VendaController();
+		controller.Alterar(v);
 		
 		RequestDispatcher rd = request.getRequestDispatcher("");
 		rd.forward(request, response);

@@ -11,7 +11,7 @@ public class JogoDao extends Conexao {
 	
 	public void Cadastrar(Jogo j) {
 		
-		String sql = "insert into jogos (nome_jogo, categoria_jogo, desenvolvedor_jogo, "
+		String sql = "insert into jogo (nome_jogo, categoria_jogo, desenvolvedor_jogo, "
 				+ "valor_jogo, estoque_jogo) "
 				+ "values (?, ?, ?, ?, ?)";
 		
@@ -20,8 +20,8 @@ public class JogoDao extends Conexao {
 			ps.setString(1, j.getNome());
 			ps.setString(2, j.getCategoria());
 			ps.setString(3, j.getDesenvolvedor());
-			ps.setString(4, j.getValor());
-			ps.setString(5, j.getEstoque());
+			ps.setDouble(4, j.getValor());
+			ps.setLong(5, j.getEstoque());
 			
 			ps.execute();
 			
@@ -36,7 +36,7 @@ public class JogoDao extends Conexao {
 	public ArrayList<Jogo> Listar(String nomeBusca) {
 		ArrayList<Jogo> lista = new ArrayList<Jogo>();
 		
-		String sql = "select * from jogos where nome_jogo like ? order by nome_jogo";
+		String sql = "select * from jogo where nome_jogo like ? order by nome_jogo";
 		
 		try {
 			PreparedStatement ps = criarConexao().prepareStatement(sql);
@@ -50,8 +50,8 @@ public class JogoDao extends Conexao {
 				j.setNome(rs.getString("nome_jogo"));
 				j.setCategoria(rs.getString("categoria_jogo"));
 				j.setDesenvolvedor(rs.getString("desenvolvedor_jogo"));
-				j.setValor(rs.getString("valor_jogo"));
-				j.setEstoque(rs.getString("estoque_jogo"));
+				j.setValor(rs.getDouble("valor_jogo"));
+				j.setEstoque(rs.getLong("estoque_jogo"));
 				
 				lista.add(j);
 				
@@ -69,7 +69,7 @@ public class JogoDao extends Conexao {
 	public Jogo Localizar(long id) {
 		Jogo j = null;
 		
-		String sql = "select * from jogos where id_jogo = ?";
+		String sql = "select * from jogo where id_jogo = ?";
 		
 		try {
 			PreparedStatement ps = criarConexao().prepareStatement(sql);
@@ -82,8 +82,8 @@ public class JogoDao extends Conexao {
 				j.setNome(rs.getString("nome_jogo"));
 				j.setCategoria(rs.getString("categoria_jogo"));
 				j.setDesenvolvedor(rs.getString("desenvolvedor_jogo"));
-				j.setValor(rs.getString("valor_jogo"));
-				j.setEstoque(rs.getString("estoque_jogo"));
+				j.setValor(rs.getDouble("valor_jogo"));
+				j.setEstoque(rs.getLong("estoque_jogo"));
 				
 			}
 			
@@ -99,7 +99,7 @@ public class JogoDao extends Conexao {
 	
 	public void Alterar(Jogo j) {
 		
-		String sql = "update jogos set nome_jogo = ?, categoria_jogo = ?, "
+		String sql = "update jogo set nome_jogo = ?, categoria_jogo = ?, "
 				+ "desenvolvedor_jogo = ?, valor_jogo = ?, "
 				+ "estoque_jogo = ? where id_jogo = ?";
 		
@@ -108,8 +108,8 @@ public class JogoDao extends Conexao {
 			ps.setString(1, j.getNome());
 			ps.setString(2, j.getCategoria());
 			ps.setString(3, j.getDesenvolvedor());
-			ps.setString(4, j.getValor());
-			ps.setString(5, j.getEstoque());
+			ps.setDouble(4, j.getValor());
+			ps.setLong(5, j.getEstoque());
 			ps.setLong(6, j.getId());
 			
 			ps.execute();
@@ -124,7 +124,7 @@ public class JogoDao extends Conexao {
 	
 	public void Excluir(Jogo j) {
 		
-		String sql = "delete from jogos where id_jogo = ?";
+		String sql = "delete from jogo where id_jogo = ?";
 		
 		try {
 			PreparedStatement ps = criarConexao().prepareStatement(sql);

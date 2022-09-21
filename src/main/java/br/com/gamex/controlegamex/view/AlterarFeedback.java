@@ -2,8 +2,9 @@ package br.com.gamex.controlegamex.view;
 
 import java.io.IOException;
 
-import br.com.gamex.controlegamex.controller.UsuarioController;
-import br.com.gamex.controlegamex.model.entidade.Usuario;
+import br.com.gamex.controlegamex.controller.FeedbackController;
+import br.com.gamex.controlegamex.model.entidade.Feedback;
+import br.com.gamex.controlegamex.model.entidade.Venda;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
@@ -11,15 +12,15 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class AlterarUsuario
+ * Servlet implementation class AlterarFeedback
  */
-public class AlterarUsuario extends HttpServlet {
+public class AlterarFeedback extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AlterarUsuario() {
+    public AlterarFeedback() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -39,10 +40,8 @@ public class AlterarUsuario extends HttpServlet {
 		// TODO Auto-generated method stub
 		//doGet(request, response);
 		
-		String cpf = request.getParameter("inputCnpj");
-		String nome = request.getParameter("inputNome");
-		String email = request.getParameter("inputEmail");
-		String senha = request.getParameter("inputSenha");
+		String comentario = request.getParameter("inputComentario");
+		String id_venda = request.getParameter("inputVenda");
 		
 		long id = 0;
 		
@@ -52,14 +51,19 @@ public class AlterarUsuario extends HttpServlet {
 			e.printStackTrace();
 		}
 		
-		Usuario u = new Usuario();
-		u.setCpf(cpf);
-		u.setNome(nome);
-		u.setEmail(email);
-		u.setSenha(senha);
+		Venda v = new Venda();
+		try {
+			v.setId(Long.parseLong(id_venda));
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
 		
-		UsuarioController controller = new UsuarioController();
-		controller.Alterar(u);
+		Feedback f = new Feedback();
+		f.setComentario(comentario);
+		f.setVenda(v);
+		
+		FeedbackController controller = new FeedbackController();
+		controller.Alterar(f);
 		
 		RequestDispatcher rd = request.getRequestDispatcher("");
 		rd.forward(request, response);
