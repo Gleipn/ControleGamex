@@ -3,6 +3,7 @@ package br.com.gamex.controlegamex.view;
 import java.io.IOException;
 
 import br.com.gamex.controlegamex.controller.CompraController;
+import br.com.gamex.controlegamex.controller.JogoController;
 import br.com.gamex.controlegamex.model.entidade.Compra;
 import br.com.gamex.controlegamex.model.entidade.Fornecedor;
 import br.com.gamex.controlegamex.model.entidade.Jogo;
@@ -41,30 +42,50 @@ public class CadastrarCompra extends HttpServlet {
 		// TODO Auto-generated method stub
 		//doGet(request, response);
 		
-		String id_fornecedor = request.getParameter("inputFornecedor");
-		String id_jogo = request.getParameter("inputJogo");
+		String strId_fornecedor = request.getParameter("inputFornecedor");
+		String strId_jogo = request.getParameter("inputJogo");
+		
+		String strValor = request.getParameter("inputJogo");
+		String strEstoque = request.getParameter("inputJogo");
+		
+		long idFornecedor = 0;
+		long idJogo = 0;
+		try {
+			idFornecedor = Long.parseLong(strId_fornecedor);
+			idJogo = Long.parseLong(strId_jogo);
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		double valor = 0.0;
+		long estoque = 0;
+		
+		try {
+			valor = Double.parseDouble(strValor);
+			estoque = Long.parseLong(strEstoque);
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		Jogo j = new Jogo();
+		j.setId(idJogo);
+		j.setValor(valor);
+		j.setEstoque(estoque);
+		
+		JogoController controller = new JogoController();
+		controller.Alterar(j);
 		
 		Fornecedor f = new Fornecedor();
-		try {
-			f.setId(Long.parseLong(id_fornecedor));
-		} catch(Exception e) {
-			e.printStackTrace();
-		}
-		Jogo j = new Jogo();
-		try {
-			j.setId(Long.parseLong(id_jogo));
-		} catch(Exception e) {
-			e.printStackTrace();
-		}
+		f.setId(idFornecedor);
 		
 		Compra c = new Compra();
 		c.setFornecedor(f);
 		c.setJogo(j);
 		
-		CompraController controller = new CompraController();
-		controller.Cadastrar(c);
+		CompraController cc = new CompraController();
+		cc.Cadastrar(c);
 		
-		RequestDispatcher rd = request.getRequestDispatcher("");
+		RequestDispatcher rd = request.getRequestDispatcher("jogos.jsp");
 		rd.forward(request, response);
 	}
 

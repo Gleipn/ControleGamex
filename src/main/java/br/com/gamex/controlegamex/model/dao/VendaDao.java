@@ -13,13 +13,13 @@ public class VendaDao extends Conexao {
 	
 	public void Cadastrar(Venda v) {
 		
-		String sql = "insert into venda (jogo_id, cliente_id) "
+		String sql = "insert into venda (cliente_id, jogo_id) "
 				+ "values (?, ?)";
 		
 		try {
 			PreparedStatement ps = criarConexao().prepareStatement(sql);
-			ps.setLong(1, v.getJogo().getId());
 			ps.setLong(2, v.getCliente().getId());
+			ps.setLong(1, v.getJogo().getId());
 			
 			ps.execute();
 			
@@ -31,16 +31,17 @@ public class VendaDao extends Conexao {
 		
 	}
 
-	public ArrayList<Venda> Listar(){
+	public ArrayList<Venda> Listar(long limite){
 		ArrayList<Venda> lista = new ArrayList<Venda>();
 		
-		String sql = "select v.*, c.nome as cliente_nome, j.nome as jogo_nome from Venda v "
-				+ "inner join cliente c on c.id = v.cliente_id "
-				+ "inner join jogos j on j.id = v.jogo_id "
-				+ "order by v.criado_em";
+		String sql = "select v.*, c.nome_cliente as cliente_nome, j.nome_jogo as jogo_nome from venda v "
+				+ "inner join cliente c on c.id_cliente = v.cliente_id "
+				+ "inner join jogo j on j.id_jogo = v.jogo_id "
+				+ "order by v.criado_em desc limit ?";
 				
 		try {
 			PreparedStatement ps = criarConexao().prepareStatement(sql);
+			ps.setLong(1, limite);
 			
 			ResultSet rs = ps.executeQuery();
 			
@@ -52,7 +53,7 @@ public class VendaDao extends Conexao {
 				
 				
 				v = new Venda();
-				v.setId(rs.getLong("venda_id"));
+				v.setId(rs.getLong("id_venda"));
 				v.setCriado_em(rs.getString("criado_em"));
 				
 				c = new Cliente();
@@ -76,4 +77,49 @@ public class VendaDao extends Conexao {
 		return lista;
 	}
 	
+	public Venda Localizar(long id) {
+		Venda v = null;
+		
+		String sql = "select * from venda where id_venda = ?";
+		
+		try {
+			PreparedStatement ps = criarConexao().prepareStatement(sql);
+			ps.setLong(1, id);
+			
+			ResultSet rs = ps.executeQuery();
+			
+			Cliente c = null;
+			Jogo j = null;
+			
+			if(rs.next()) {
+				v = new Venda();
+				v.setId(rs.getLong("id_venda"));
+				v.setCriado_em(rs.getString("criado_em"));
+				
+				c = new Cliente();
+				c.setId(rs.getLong("cliente_id"));
+				c.setCpf(rs.getString("cliente_cpf"));
+				c.setNome(rs.getString("cliente_nome"));
+				c.setEndereco(rs.getString("cliente_endereco"));
+				c.setTelefone(rs.getString("cliente_telefone"));
+				c.setEmail(rs.getString("cliente_email"));
+				v.setCliente(c);
+				
+				j = new Jogo();
+				j.setId(rs.getLong("jogo_id"));
+				j.setNome(rs.getString("jogo_nome"));
+				j.setValor(rs.getDouble("jogo_valor"));
+				j.setCategoria(rs.getString("jogo_categoria"));
+				v.setJogo(j);
+				
+			}
+			
+		} catch(SQLException e) {
+			e.printStackTrace();
+		} finally {
+			fecharConexao();
+		}
+		
+		return v;
+	}
 }

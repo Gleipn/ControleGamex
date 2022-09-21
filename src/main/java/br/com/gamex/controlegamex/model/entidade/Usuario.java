@@ -3,7 +3,6 @@ package br.com.gamex.controlegamex.model.entidade;
 public class Usuario {
 
 	private long id;
-	private String cpf;
 	private String nome;
 	private String email;
 	private String senha;
@@ -14,12 +13,6 @@ public class Usuario {
 	}
 	public void setId(long id) {
 		this.id = id;
-	}
-	public String getCpf() {
-		return cpf;
-	}
-	public void setCpf(String cpf) {
-		this.cpf = cpf;
 	}
 	public String getNome() {
 		return nome;

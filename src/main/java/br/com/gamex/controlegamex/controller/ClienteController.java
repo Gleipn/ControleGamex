@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import br.com.gamex.controlegamex.model.dao.ClienteDao;
 import br.com.gamex.controlegamex.model.entidade.Cliente;
+import br.com.gamex.controlegamex.model.entidade.Usuario;
 
 public class ClienteController {
 
@@ -17,16 +18,16 @@ public class ClienteController {
 		dao.Alterar(c);
 	}
 	
-	public ArrayList<Cliente> Listar(String nomeBusca) {
-		return dao.Listar(nomeBusca);
+	public void Excluir(Cliente c) {
+		dao.Excluir(c);
 	}
 	
 	public Cliente Localizar(long id) {
 		return dao.Localizar(id);
 	}
 	
-	public void Excluir(Cliente c) {
-		dao.Excluir(c);
+	public ArrayList<Cliente> Listar(long limite) {
+		return dao.Listar(limite);
 	}
 	
 }

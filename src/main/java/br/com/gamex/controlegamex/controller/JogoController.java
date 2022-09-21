@@ -3,6 +3,7 @@ package br.com.gamex.controlegamex.controller;
 import java.util.ArrayList;
 
 import br.com.gamex.controlegamex.model.dao.JogoDao;
+import br.com.gamex.controlegamex.model.entidade.Fornecedor;
 import br.com.gamex.controlegamex.model.entidade.Jogo;
 
 public class JogoController {
@@ -17,16 +18,16 @@ public class JogoController {
 		dao.Alterar(j);
 	}
 	
-	public ArrayList<Jogo> Listar(String nomeBusca) {
-		return dao.Listar(nomeBusca);
+	public void Excluir(Jogo j) {
+		dao.Excluir(j);
+	}
+	
+	public ArrayList<Jogo> Listar(long limite) {
+		return dao.Listar(limite);
 	}
 	
 	public Jogo Localizar(long id) {
 		return dao.Localizar(id);
-	}
-	
-	public void Excluir(Jogo j) {
-		dao.Excluir(j);
 	}
 	
 }

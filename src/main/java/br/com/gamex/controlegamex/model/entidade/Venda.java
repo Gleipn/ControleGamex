@@ -5,23 +5,23 @@ public class Venda {
 	private long id;
 	private String criado_em;
 	
-	private Jogo jogo;
 	private Cliente cliente;
+	private Jogo jogo;
 	
-	public Venda(long id, String criado_em, Jogo jogo, Cliente cliente) {
+	public Venda(long id, String criado_em, Cliente cliente, Jogo jogo) {
 		super();
 		this.id = id;
 		this.criado_em = criado_em;
-		this.jogo = jogo;
 		this.cliente = cliente;
+		this.jogo = jogo;
 	}
 	
 	public Venda() {
 		super();
 		this.id = 0;
 		this.criado_em = "";
-		this.jogo = new Jogo();
 		this.cliente = new Cliente();
+		this.jogo = new Jogo();
 	}
 
 	public long getId() {
@@ -40,20 +40,20 @@ public class Venda {
 		this.criado_em = criado_em;
 	}
 
+	public Cliente getCliente() {
+		return cliente;
+	}
+	
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
+	}
+
 	public Jogo getJogo() {
 		return jogo;
 	}
 
 	public void setJogo(Jogo jogo) {
 		this.jogo = jogo;
-	}
-
-	public Cliente getCliente() {
-		return cliente;
-	}
-
-	public void setCliente(Cliente cliente) {
-		this.cliente = cliente;
 	}
 	
 }

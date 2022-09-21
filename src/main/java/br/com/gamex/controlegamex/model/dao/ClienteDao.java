@@ -34,14 +34,15 @@ public class ClienteDao extends Conexao {
 		
 	}
 	
-	public ArrayList<Cliente> Listar(String nomeBusca) {
+	public ArrayList<Cliente> Listar(long limite) {
 		ArrayList<Cliente> lista = new ArrayList<Cliente>();
 		
-		String sql = "select * from cliente where nome_cliente like ? order by nome_cliente";
+		
+		String sql = "select * from cliente order by criado_em desc limit ?";
 		
 		try {
 			PreparedStatement ps = criarConexao().prepareStatement(sql);
-			ps.setString(1, "%" + nomeBusca + "%");
+			ps.setLong(1, limite);
 			
 			ResultSet rs = ps.executeQuery();
 			
@@ -58,9 +59,9 @@ public class ClienteDao extends Conexao {
 				
 				lista.add(c);
 				
+				
 			}
 		} catch(SQLException e) { 
-			//System.out.println("Erro no Listar");
 			e.printStackTrace();
 		} finally {
 			fecharConexao();

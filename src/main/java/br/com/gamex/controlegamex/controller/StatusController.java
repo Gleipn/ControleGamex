@@ -13,8 +13,12 @@ public class StatusController {
 		dao.Cadastrar(s);
 	}
 	
-	public ArrayList<Status> Listar() {
-		return dao.Listar();
+	public void Alterar(Status s) {
+		dao.Alterar(s);
+	}
+	
+	public ArrayList<Status> Listar(long limite) {
+		return dao.Listar(limite);
 	}
 	
 }

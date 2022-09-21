@@ -17,16 +17,20 @@ public class UsuarioController {
 		dao.Alterar(u);
 	}
 	
-	public ArrayList<Usuario> Listar(String nomeBusca) {
-		return dao.Listar(nomeBusca);
+	public void Excluir(Usuario u) {
+		dao.Excluir(u);
+	}
+	
+	public ArrayList<Usuario> Listar(long limite) {
+		return dao.Listar(limite);
 	}
 	
 	public Usuario Localizar(long id) {
 		return dao.Localizar(id);
 	}
 	
-	public void Excluir(Usuario u) {
-		dao.Excluir(u);
+	public Usuario Logar(Usuario u) {
+		return dao.Logar(u);
 	}
 	
 }

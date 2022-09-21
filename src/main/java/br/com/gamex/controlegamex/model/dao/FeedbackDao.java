@@ -30,15 +30,16 @@ public class FeedbackDao extends Conexao {
 		
 	}
 
-	public ArrayList<Feedback> Listar(){
+	public ArrayList<Feedback> Listar(long limite){
 		ArrayList<Feedback> lista = new ArrayList<Feedback>();
 		
 		String sql = "select f.*, v.jogo as jogo_nome from feedback f "
 				+ "inner join venda v on v.id = f.venda_id "
-				+ "order by f.criado_em";
+				+ "order by f.criado_em limit ?";
 				
 		try {
 			PreparedStatement ps = criarConexao().prepareStatement(sql);
+			ps.setLong(1, limite);
 			
 			ResultSet rs = ps.executeQuery();
 			

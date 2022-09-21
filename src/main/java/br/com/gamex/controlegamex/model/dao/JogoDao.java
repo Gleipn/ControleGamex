@@ -12,16 +12,13 @@ public class JogoDao extends Conexao {
 	public void Cadastrar(Jogo j) {
 		
 		String sql = "insert into jogo (nome_jogo, categoria_jogo, desenvolvedor_jogo, "
-				+ "valor_jogo, estoque_jogo) "
-				+ "values (?, ?, ?, ?, ?)";
+				+ "values (?, ?, ?)";
 		
 		try {
 			PreparedStatement ps = criarConexao().prepareStatement(sql);
 			ps.setString(1, j.getNome());
 			ps.setString(2, j.getCategoria());
 			ps.setString(3, j.getDesenvolvedor());
-			ps.setDouble(4, j.getValor());
-			ps.setLong(5, j.getEstoque());
 			
 			ps.execute();
 			
@@ -33,25 +30,27 @@ public class JogoDao extends Conexao {
 		
 	}
 	
-	public ArrayList<Jogo> Listar(String nomeBusca) {
+	public ArrayList<Jogo> Listar(long limite) {
 		ArrayList<Jogo> lista = new ArrayList<Jogo>();
 		
-		String sql = "select * from jogo where nome_jogo like ? order by nome_jogo";
+		String sql = "select * from jogo order by criado_em desc limit ? ";
 		
 		try {
 			PreparedStatement ps = criarConexao().prepareStatement(sql);
-			ps.setString(1, "%" + nomeBusca + "%");
+			ps.setLong(1, limite);
 			
 			ResultSet rs = ps.executeQuery();
 			
 			Jogo j;
 			while(rs.next()) {
 				j = new Jogo();
+				j.setId(rs.getLong("id_jogo"));
 				j.setNome(rs.getString("nome_jogo"));
 				j.setCategoria(rs.getString("categoria_jogo"));
 				j.setDesenvolvedor(rs.getString("desenvolvedor_jogo"));
 				j.setValor(rs.getDouble("valor_jogo"));
 				j.setEstoque(rs.getLong("estoque_jogo"));
+				j.setCriado_em(rs.getString("criado_em"));
 				
 				lista.add(j);
 				
@@ -79,6 +78,7 @@ public class JogoDao extends Conexao {
 			
 			if(rs.next()) {
 				j = new Jogo();
+				j.setId(rs.getLong("id_jogo"));
 				j.setNome(rs.getString("nome_jogo"));
 				j.setCategoria(rs.getString("categoria_jogo"));
 				j.setDesenvolvedor(rs.getString("desenvolvedor_jogo"));
@@ -99,18 +99,13 @@ public class JogoDao extends Conexao {
 	
 	public void Alterar(Jogo j) {
 		
-		String sql = "update jogo set nome_jogo = ?, categoria_jogo = ?, "
-				+ "desenvolvedor_jogo = ?, valor_jogo = ?, "
-				+ "estoque_jogo = ? where id_jogo = ?";
+		String sql = "update jogo set valor_jogo = ?, estoque_jogo = ? where id_jogo = ?";
 		
 		try {
 			PreparedStatement ps = criarConexao().prepareStatement(sql);
-			ps.setString(1, j.getNome());
-			ps.setString(2, j.getCategoria());
-			ps.setString(3, j.getDesenvolvedor());
-			ps.setDouble(4, j.getValor());
-			ps.setLong(5, j.getEstoque());
-			ps.setLong(6, j.getId());
+			ps.setDouble(1, j.getValor());
+			ps.setLong(2, j.getEstoque());
+			ps.setLong(3, j.getId());
 			
 			ps.execute();
 			

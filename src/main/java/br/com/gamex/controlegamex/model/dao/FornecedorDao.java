@@ -32,15 +32,15 @@ public class FornecedorDao extends Conexao {
 		
 	}
 	
-	public ArrayList<Fornecedor> Listar(String nomeBusca) {
+	public ArrayList<Fornecedor> Listar(long limite) {
 		ArrayList<Fornecedor> lista = new ArrayList<Fornecedor>();
 		
-		String sql = "select * from fornecedor where nome_fornecedor like ? "
-				+ "order by nome_fornecedor";
+		String sql = "select * from fornecedor "
+				+ "order by criado_em desc limit ?";
 		
 		try {
 			PreparedStatement ps = criarConexao().prepareStatement(sql);
-			ps.setString(1, "%" + nomeBusca + "%");
+			ps.setLong(1, limite);
 			
 			ResultSet rs = ps.executeQuery();
 			
@@ -52,6 +52,7 @@ public class FornecedorDao extends Conexao {
 				f.setNome(rs.getString("nome_fornecedor"));
 				f.setEndereco(rs.getString("endereco_fornecedor"));
 				f.setEmail(rs.getString("email_fornecedor"));
+				f.setCriado_em(rs.getString("criado_em"));
 				
 				lista.add(f);
 				
@@ -84,6 +85,7 @@ public class FornecedorDao extends Conexao {
 				f.setNome(rs.getString("nome_fornecedor"));
 				f.setEndereco(rs.getString("endereco_fornecedor"));
 				f.setEmail(rs.getString("email_fornecedor"));
+				f.setCriado_em(rs.getString("criado_em"));
 				
 			}
 			

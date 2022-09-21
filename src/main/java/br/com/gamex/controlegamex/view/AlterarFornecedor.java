@@ -47,7 +47,7 @@ public class AlterarFornecedor extends HttpServlet {
 		long id = 0;
 		
 		try {
-			id = Long.parseLong(request.getParameter("InputIdentificador"));
+			id = Long.parseLong(request.getParameter("inputId"));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -62,7 +62,7 @@ public class AlterarFornecedor extends HttpServlet {
 		FornecedorController controller = new FornecedorController();
 		controller.Alterar(f);
 		
-		RequestDispatcher rd = request.getRequestDispatcher("");
+		RequestDispatcher rd = request.getRequestDispatcher("fornecedores.jsp");
 		rd.forward(request, response);
 	}
 

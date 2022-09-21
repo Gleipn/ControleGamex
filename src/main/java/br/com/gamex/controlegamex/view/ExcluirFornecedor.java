@@ -45,7 +45,7 @@ public class ExcluirFornecedor extends HttpServlet {
 		
 		controller.Excluir(f);
 		
-		RequestDispatcher rd = request.getRequestDispatcher("");
+		RequestDispatcher rd = request.getRequestDispatcher("fornecedores.jsp");
 		rd.forward(request, response);
 	}
 

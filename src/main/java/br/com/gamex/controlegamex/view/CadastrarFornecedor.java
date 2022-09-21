@@ -50,10 +50,17 @@ public class CadastrarFornecedor extends HttpServlet {
 		f.setEndereco(endereco);
 		f.setEmail(email);
 		
+		String destino = "";
 		FornecedorController controller = new FornecedorController();
-		controller.Cadastrar(f);
+		try {
+			controller.Cadastrar(f);
+			destino = "fornecedores.jsp";
+		} catch(Exception e) {
+			request.setAttribute("erro", "Não foi possivel realizar o cadastro.");
+			destino = "cadastro-fornecedor.jsp";
+		}
 		
-		RequestDispatcher rd = request.getRequestDispatcher("");
+		RequestDispatcher rd = request.getRequestDispatcher(destino);
 		rd.forward(request, response);
 	}
 

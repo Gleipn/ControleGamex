@@ -48,7 +48,7 @@ public class AlterarCliente extends HttpServlet {
 		long id = 0;
 		
 		try {
-			id = Long.parseLong(request.getParameter("InputIdentificador"));
+			id = Long.parseLong(request.getParameter("inputId"));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

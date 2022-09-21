@@ -45,7 +45,7 @@ public class IniciarAlterarFornecedor extends HttpServlet {
 		
 		request.setAttribute("fornecedor", f);
 		
-		RequestDispatcher rd = request.getRequestDispatcher("");
+		RequestDispatcher rd = request.getRequestDispatcher("fornecedor-details.jsp");
 		rd.forward(request, response);
 	}
 

@@ -17,16 +17,16 @@ public class FornecedorController {
 		dao.Alterar(f);
 	}
 	
-	public ArrayList<Fornecedor> Listar(String nomeBusca) {
-		return dao.Listar(nomeBusca);
+	public void Excluir(Fornecedor f) {
+		dao.Excluir(f);
 	}
 	
 	public Fornecedor Localizar(long id) {
 		return dao.Localizar(id);
 	}
 	
-	public void Excluir(Fornecedor f) {
-		dao.Excluir(f);
+	public ArrayList<Fornecedor> Listar(long limite) {
+		return dao.Listar(limite);
 	}
 	
 }
