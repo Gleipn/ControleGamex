@@ -1053,6 +1053,19 @@ ul.social_icon li a:hover {
 /** end about **/
 
 
+/* index img */
+
+#index-img{
+     width: 400px;
+}
+.produto-index{
+     width: 350px;
+}
+
+
+/* end index img */
+
+
 /** laptop **/
 
 .laptop1 {
