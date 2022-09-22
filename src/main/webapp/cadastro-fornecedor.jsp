@@ -45,13 +45,14 @@
             <form action="CadastrarFornecedor" method="post">
               <div class="form-group">
                 <label for="idNome">CNPJ</label>
-                <input type="text" id="idNome" name="inputCnpj" class="form-control" />
+                <input type="text" id="idNome" name="inputCnpj" class="form-control" 
+                onKeyDown="return onlyNum(event)" onkeypress="maskCnpj(this)" maxlength="18" size="14">
                 <label for="idNome">Nome</label>
                 <input type="text" id="idNome" name="inputNome" class="form-control" />
                 <label for="idNome">Endereço</label>
                 <input type="text" id="idNome" name="inputEndereco" class="form-control" />
                 <label for="idNome">Email</label>
-                <input type="text" id="idNome" name="inputEmail" class="form-control" />
+                <input type="email" id="idNome" name="inputEmail" class="form-control" />
               </div>
               <div class="form-group">
                 <button type="submit" class="btn btn-dark">Cadastrar</button>
@@ -76,5 +77,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 <script src="resources/js/adminlte.min.js"></script>
+<script src="js/mask.js"></script>
 </body>
 </html>

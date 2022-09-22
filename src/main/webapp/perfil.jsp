@@ -119,13 +119,12 @@
         <section class="perfil">
             <div class="perfil-header">
                 <h2 class="perfil-h2">Usuário <i class="fa fa-user" aria-hidden="true"></i></h2>
-                <div class="info-usuário">
+                <div class="info-usuário" style="display: flex; align-items: center;">
                     <img class="foto-usuario" src="./images/user00.jpg">
                     <h3 class="nome-usuario"><%= c.getNome() %></h3>
                     <span>ID: <%= c.getId() %></span>
                 </div>
-                <!-- <button name="foto-upload"><i class="fa fa-angle-double-left" aria-hidden="true"></i> Upload <i class="fa fa-picture-o" aria-hidden="true"></i> <i class="fa fa-angle-double-right" aria-hidden="true"></i></button>
-            --> </div>
+                </div>
         </section>
         
         <section class="pedidos">

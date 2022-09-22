@@ -136,7 +136,8 @@
                   <form id="request" method="post" action="CadastrarCliente" class="main_form">
                      <div class="row">
                         <div class="col-md-12 ">
-                           <input class="contactus" placeholder="CPF" type="text" name="inputCpf"> 
+                           <input class="contactus" placeholder="CPF" type="text" name="inputCpf" 
+                           onKeyDown="return onlyNum(event)" onkeypress="maskCpf(this)" maxlength="14" size="12"> 
                         </div>
                         <div class="col-md-12">
                             <input class="contactus" placeholder="Nome" type="text" name="inputNome">                          
@@ -145,10 +146,11 @@
                             <input class="contactus" placeholder="Endereço" type="text" name="inputEndereco">                          
                          </div>
                          <div class="col-md-12">
-                            <input class="contactus" placeholder="Telefone" type="text" name="inputTelefone">                          
+                            <input class="contactus" placeholder="Telefone" type="text" name="inputTelefone" 
+                            onkeypress="maskTelefone(this)" onKeyDown="return onlyNum(event)" size="9" maxlength="13">                          
                          </div>
                         <div class="col-md-12">
-                           <input class="contactus" placeholder="Email" type="text" name="inputEmail"> 
+                           <input class="contactus" placeholder="Email" type="email" name="inputEmail"> 
                         </div>
                         <div class="col-md-12">
                            <input class="contactus" placeholder="Senha" type="password" name="inputSenha"> 
@@ -158,7 +160,7 @@
                         </div>
                         
                         <div class="col-md-12">
-                           <input type="submit" class="send_btn">
+                        <button type="submit" class="send_btn">Cadastrar</button>
                         </div>
                      </div>
                   </form>
@@ -224,5 +226,7 @@
       <!-- sidebar -->
       <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
       <script src="js/custom.js"></script>
+      
+      <script src="js/mask.js"></script>
    </body>
 </html>

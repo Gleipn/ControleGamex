@@ -32,9 +32,9 @@ id_jogo bigint not null auto_increment,
 nome_jogo varchar(255) not null,
 categoria_jogo varchar(255) not null,
 desenvolvedor_jogo varchar(255) not null,
-valorcompra_jogo numeric (5, 2) not null,
-valorvenda_jogo numeric (5, 2) not null,
-estoque_jogo int not null,
+valorcompra_jogo numeric (5, 2) default 0,
+valorvenda_jogo numeric (5, 2) default 0,
+estoque_jogo int default 0,
 imagem_jogo varchar(255),
 criado_em timestamp not null default current_timestamp,
  primary key (id_jogo)
@@ -73,7 +73,7 @@ foreign key(jogo_id) references jogo(id_jogo)
 ) engine = innodb;
 
 insert into usuario(nome_usuario, email_usuario, senha_usuario) values ('adminstrador', 'admin@admin.com', md5('admin'));
-insert into jogo (nome_jogo, categoria_jogo, desenvolvedor_jogo, imagem_jogo) values ("BattleField V", "Ação", "DICE", "images/3b3337c17c.webp");
-insert into jogo (nome_jogo, categoria_jogo, desenvolvedor_jogo, imagem_jogo) values ("Horizon Zero Dawn", "Aventura", "Guerrilla", "images/horizon_zero_dawn_ps4_midia_fisica_pronta_entrega_897_1_20210216170058.webp");
+insert into jogo (nome_jogo, categoria_jogo, desenvolvedor_jogo, valorcompra_jogo, valorvenda_jogo, estoque_jogo, imagem_jogo) values ("BattleField V", "Ação", "DICE", 100, 300, 11, "images/3b3337c17c.webp");
+insert into jogo (nome_jogo, categoria_jogo, desenvolvedor_jogo, valorcompra_jogo, valorvenda_jogo, estoque_jogo, imagem_jogo) values ("Horizon Zero Dawn", "Aventura", "Guerrilla", 100, 300, 7, "images/horizon_zero_dawn_ps4_midia_fisica_pronta_entrega_897_1_20210216170058.webp");
 insert into fornecedor (cnpj_fornecedor, nome_fornecedor, endereco_fornecedor, email_fornecedor) values ("00.000.000/0000-00", "Playstation", "Algum Lugar", "Ps@Sony.com");
 insert into fornecedor (cnpj_fornecedor, nome_fornecedor, endereco_fornecedor, email_fornecedor) values ("00.000.000/0000-01", "Eletronic Arts", "Lugar Algum", "Fifa@Ea.com");

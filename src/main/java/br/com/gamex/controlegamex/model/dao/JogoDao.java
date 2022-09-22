@@ -178,7 +178,7 @@ public class JogoDao extends Conexao {
 	
 	public void Excluir(Jogo j) {
 		
-		String sql = "delete from jogo where id_jogo = ?";
+		String sql = "delete from jogo where id_jogo = ? ";
 		
 		try {
 			PreparedStatement ps = criarConexao().prepareStatement(sql);
