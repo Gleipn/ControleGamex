@@ -45,8 +45,9 @@ public class CadastrarCompra extends HttpServlet {
 		String strId_fornecedor = request.getParameter("inputFornecedor");
 		String strId_jogo = request.getParameter("inputJogo");
 		
-		String strValor = request.getParameter("inputJogo");
-		String strEstoque = request.getParameter("inputJogo");
+		String strValorCompra = request.getParameter("inputValorCompra");
+		String strValorVenda = request.getParameter("inputValorVenda");
+		String strEstoque = request.getParameter("inputEstoque");
 		
 		long idFornecedor = 0;
 		long idJogo = 0;
@@ -57,11 +58,13 @@ public class CadastrarCompra extends HttpServlet {
 			e.printStackTrace();
 		}
 		
-		double valor = 0.0;
+		double valorcompra = 0.0;
+		double valorvenda = 0.0;
 		long estoque = 0;
 		
 		try {
-			valor = Double.parseDouble(strValor);
+			valorcompra = Double.parseDouble(strValorCompra);
+			valorvenda = Double.parseDouble(strValorVenda);
 			estoque = Long.parseLong(strEstoque);
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -69,11 +72,12 @@ public class CadastrarCompra extends HttpServlet {
 		
 		Jogo j = new Jogo();
 		j.setId(idJogo);
-		j.setValor(valor);
+		j.setValorCompra(valorcompra);
+		j.setValorVenda(valorvenda);
 		j.setEstoque(estoque);
 		
 		JogoController controller = new JogoController();
-		controller.Alterar(j);
+		controller.RealizarCompra(j);
 		
 		Fornecedor f = new Fornecedor();
 		f.setId(idFornecedor);

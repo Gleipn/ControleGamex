@@ -30,4 +30,8 @@ public class ClienteController {
 		return dao.Listar(limite);
 	}
 	
+	public Cliente Logar(Cliente c) {
+		return dao.Logar(c);
+	}
+	
 }

@@ -13,10 +13,6 @@ public class FeedbackController {
 		dao.Cadastrar(f);
 	}
 	
-	public void Alterar(Feedback f) {
-		dao.Alterar(f);
-	}
-	
 	public ArrayList<Feedback> Listar(long limite) {
 		return dao.Listar(limite);
 	}

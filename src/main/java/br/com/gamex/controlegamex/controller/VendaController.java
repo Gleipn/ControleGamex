@@ -19,6 +19,10 @@ public class VendaController {
 		return dao.Listar(limite);
 	}
 	
+	public ArrayList<Venda> ListarPorCliente(long idcliente, long limite) {
+		return dao.ListarPorCliente(idcliente, limite);
+	}
+	
 	public Venda Localizar(long id) {
 		return dao.Localizar(id);
 	}

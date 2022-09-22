@@ -1,25 +1,26 @@
 package br.com.gamex.controlegamex.view;
 
-import java.io.IOException;
-
-import br.com.gamex.controlegamex.controller.StatusController;
-import br.com.gamex.controlegamex.model.entidade.Status;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.io.IOException;
+
+import br.com.gamex.controlegamex.controller.JogoController;
+import br.com.gamex.controlegamex.model.entidade.Jogo;
 
 /**
- * Servlet implementation class IniciarAlterarStatus
+ * Servlet implementation class IniciarVenda
  */
-public class IniciarAlterarStatus extends HttpServlet {
+public class IniciarVenda extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public IniciarAlterarStatus() {
+    public IniciarVenda() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -40,12 +41,12 @@ public class IniciarAlterarStatus extends HttpServlet {
 			e.printStackTrace();
 		}
 		
-		StatusController controller = new StatusController();
-		Status s = controller.Localizar(id);
+		JogoController controller = new JogoController();
+		Jogo j = controller.Localizar(id);
 		
-		request.setAttribute("status", s);
+		request.setAttribute("jogo", j);
 		
-		RequestDispatcher rd = request.getRequestDispatcher("");
+		RequestDispatcher rd = request.getRequestDispatcher("realizarvenda.jsp");
 		rd.forward(request, response);
 	}
 

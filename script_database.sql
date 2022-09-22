@@ -10,6 +10,7 @@ nome_cliente varchar(255) not null,
 endereco_cliente varchar(255) not null,
 telefone_cliente varchar(20) not null,
 email_cliente varchar(255) not null,
+senha_cliente varchar(255) not null,
 criado_em timestamp not null default current_timestamp,
 primary key (id_cliente)
 ) engine = innodb;
@@ -31,7 +32,8 @@ id_jogo bigint not null auto_increment,
 nome_jogo varchar(255) not null,
 categoria_jogo varchar(255) not null,
 desenvolvedor_jogo varchar(255) not null,
-valor_jogo numeric (5, 2) not null,
+valorcompra_jogo numeric (5, 2) not null,
+valorvenda_jogo numeric (5, 2) not null,
 estoque_jogo int not null,
 imagem_jogo varchar(255),
 criado_em timestamp not null default current_timestamp,
@@ -70,24 +72,8 @@ foreign key(fornecedor_id) references fornecedor(id_fornecedor),
 foreign key(jogo_id) references jogo(id_jogo)
 ) engine = innodb;
 
--- table status
-create table status (
-id_status bigint not null auto_increment,
-situacao_status varchar(255) not null,
-venda_id bigint not null,
-criado_em timestamp not null default current_timestamp,
- primary key (id_status),
- foreign key(venda_id) references venda(id_venda)
-) engine = innodb;
-
--- table feedback
-create table feedback (
-id_feedback bigint not null auto_increment,
-comentario_feedback varchar(255) not null,
-venda_id bigint not null,
-criado_em timestamp not null default current_timestamp,
-primary key (id_feedback),
-foreign key(venda_id) references venda(id_venda)
-) engine = innodb;
-
-insert into usuario(nome_usuario, email_usuario, senha_usuario) values ('adminstrador', 'admin@admin.com', md5('admin123'));
+insert into usuario(nome_usuario, email_usuario, senha_usuario) values ('adminstrador', 'admin@admin.com', md5('admin'));
+insert into jogo (nome_jogo, categoria_jogo, desenvolvedor_jogo, imagem_jogo) values ("BattleField V", "Ação", "DICE", "images/3b3337c17c.webp");
+insert into jogo (nome_jogo, categoria_jogo, desenvolvedor_jogo, imagem_jogo) values ("Horizon Zero Dawn", "Aventura", "Guerrilla", "images/horizon_zero_dawn_ps4_midia_fisica_pronta_entrega_897_1_20210216170058.webp");
+insert into fornecedor (cnpj_fornecedor, nome_fornecedor, endereco_fornecedor, email_fornecedor) values ("00.000.000/0000-00", "Playstation", "Algum Lugar", "Ps@Sony.com");
+insert into fornecedor (cnpj_fornecedor, nome_fornecedor, endereco_fornecedor, email_fornecedor) values ("00.000.000/0000-01", "Eletronic Arts", "Lugar Algum", "Fifa@Ea.com");

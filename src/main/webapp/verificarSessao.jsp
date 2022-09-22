@@ -3,7 +3,7 @@
 
     <%
     	if (session.getAttribute("usuarioLogado") == null){
-    		RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
+    		RequestDispatcher rd = request.getRequestDispatcher("acesso-restrito.jsp");
     		rd.forward(request, response);
     	}
     

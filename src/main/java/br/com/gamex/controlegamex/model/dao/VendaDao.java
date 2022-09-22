@@ -18,8 +18,8 @@ public class VendaDao extends Conexao {
 		
 		try {
 			PreparedStatement ps = criarConexao().prepareStatement(sql);
-			ps.setLong(2, v.getCliente().getId());
-			ps.setLong(1, v.getJogo().getId());
+			ps.setLong(1, v.getCliente().getId());
+			ps.setLong(2, v.getJogo().getId());
 			
 			ps.execute();
 			
@@ -42,6 +42,53 @@ public class VendaDao extends Conexao {
 		try {
 			PreparedStatement ps = criarConexao().prepareStatement(sql);
 			ps.setLong(1, limite);
+			
+			ResultSet rs = ps.executeQuery();
+			
+			Venda v = null;
+			Cliente c = null;
+			Jogo j = null;
+			
+			while(rs.next()) {
+				
+				
+				v = new Venda();
+				v.setId(rs.getLong("id_venda"));
+				v.setCriado_em(rs.getString("criado_em"));
+				
+				c = new Cliente();
+				c.setId(rs.getLong("cliente_id"));
+				c.setNome(rs.getString("cliente_nome"));
+				v.setCliente(c);
+				
+				j = new Jogo();
+				j.setId(rs.getLong("jogo_id"));
+				j.setNome(rs.getString("jogo_nome"));
+				v.setJogo(j);
+				
+				lista.add(v);
+			}
+		} catch(SQLException e) {
+			e.printStackTrace();
+		} finally {
+			fecharConexao();
+		}
+		
+		return lista;
+	}
+	
+	public ArrayList<Venda> ListarPorCliente(long idcliente, long limite){
+		ArrayList<Venda> lista = new ArrayList<Venda>();
+		
+		String sql = "select v.*, c.nome_cliente as cliente_nome, j.nome_jogo as jogo_nome from venda v "
+				+ "inner join cliente c on c.id_cliente = v.cliente_id "
+				+ "inner join jogo j on j.id_jogo = v.jogo_id "
+				+ "where v.cliente_id = ? order by v.criado_em desc limit ?";
+				
+		try {
+			PreparedStatement ps = criarConexao().prepareStatement(sql);
+			ps.setLong(1, idcliente);
+			ps.setLong(2, limite);
 			
 			ResultSet rs = ps.executeQuery();
 			
@@ -108,7 +155,8 @@ public class VendaDao extends Conexao {
 				j = new Jogo();
 				j.setId(rs.getLong("jogo_id"));
 				j.setNome(rs.getString("jogo_nome"));
-				j.setValor(rs.getDouble("jogo_valor"));
+				j.setValorCompra(rs.getDouble("jogo_valorcompra"));
+				j.setValorVenda(rs.getDouble("jogo_valorvenda"));
 				j.setCategoria(rs.getString("jogo_categoria"));
 				v.setJogo(j);
 				

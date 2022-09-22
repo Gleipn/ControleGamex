@@ -1,3 +1,13 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<%@ page import="br.com.gamex.controlegamex.model.entidade.Cliente" %>
+<%@ page import="br.com.gamex.controlegamex.controller.ClienteController" %>
+<%@ page import="br.com.gamex.controlegamex.model.entidade.Venda" %>
+<%@ page import="br.com.gamex.controlegamex.controller.VendaController" %>
+<%@ page import="java.util.ArrayList" %>
+<%
+		Cliente c = (Cliente) session.getAttribute("clienteLogado");
+%>
 <!DOCTYPE html>
 <html lang="en">
    <head>
@@ -81,12 +91,20 @@
                               <li class="nav-item d_none">
                                  <a class="nav-link" href="#"><i class="fa fa-search" aria-hidden="true"></i></a>
                               </li>
-                              <li class="nav-item d_none">
-                                 <a class="nav-link" href="#">Login</a>
-                              </li>
-                              <li class="nav-item d_none">
-                                 <a class="nav-link active" href="perfil.html">Perfil <i class="fa fa-user" aria-hidden="true"></i></a>
-                              </li>
+                             <%
+    							if (session.getAttribute("clienteLogado") == null){ 
+    							%>
+    							<li class="nav-item d_none">
+                                    <a class="nav-link" href="login.jsp">Login</a>
+                                 </li>
+    							<% } else {%>
+                               <li class="nav-item d_none">
+                               <a class="nav-link" href="LocalizarCliente?id=<%= c.getId() %>">Perfil <i class="fa fa-user" aria-hidden="true"></i></a>
+                            </li>
+                               <li class="nav-item d_none">
+                               <a class="nav-link" href="LogoutCliente">Sair</a>
+                            </li>
+    						<% } %>
                            </ul>
                         </div>
                      </nav>
@@ -100,14 +118,14 @@
 
         <section class="perfil">
             <div class="perfil-header">
-                <h2 class="perfil-h2">UsuÃ¡rio <i class="fa fa-user" aria-hidden="true"></i></h2>
-                <div class="info-usuÃ¡rio">
+                <h2 class="perfil-h2">Usuário <i class="fa fa-user" aria-hidden="true"></i></h2>
+                <div class="info-usuário">
                     <img class="foto-usuario" src="./images/user00.jpg">
-                    <h3 class="nome-usuario">Ragnar Lodbrok</h3>
-                    <span>ID:<p>000000000</p></span>
+                    <h3 class="nome-usuario"><%= c.getNome() %></h3>
+                    <span>ID: <%= c.getId() %></span>
                 </div>
-                <button name="foto-upload"><i class="fa fa-angle-double-left" aria-hidden="true"></i> Upload <i class="fa fa-picture-o" aria-hidden="true"></i> <i class="fa fa-angle-double-right" aria-hidden="true"></i></button>
-            </div>
+                <!-- <button name="foto-upload"><i class="fa fa-angle-double-left" aria-hidden="true"></i> Upload <i class="fa fa-picture-o" aria-hidden="true"></i> <i class="fa fa-angle-double-right" aria-hidden="true"></i></button>
+            --> </div>
         </section>
         
         <section class="pedidos">
@@ -117,31 +135,26 @@
                     <table class="table">
                         <thead>
                           <tr>
-                            <th scope="col">#</th>
                             <th scope="col">ID Pedido</th>
                             <th scope="col">Jogo</th>
                             <th scope="col">Data</th>
                           </tr>
                         </thead>
                         <tbody>
+        <%
+        			long idcliente = c.getId();
+          			VendaController vc = new VendaController();
+          			ArrayList<Venda> vendas = vc.ListarPorCliente(idcliente, 10);
+          			int vindex = 0;
+          			for (Venda v: vendas) {
+          				vindex++;
+          		%>
                           <tr>
-                            <th scope="row">1</th>
-                            <td>00001</td>
-                            <td>God of War 3</td>
-                            <td>00/00/0000</td>
+                            <th scope="row"><%= v.getId() %></th>
+                            <td><%= v.getJogo().getNome() %></td>
+                            <td><%= v.getCriado_em() %></td>
                           </tr>
-                          <tr>
-                            <th scope="row">2</th>
-                            <td>00002</td>
-                            <td>GTA V</td>
-                            <td>00/00/0000</td>
-                          </tr>
-                          <tr>
-                            <th scope="row">3</th>
-                            <td>00003</td>
-                            <td>ARK age</td>
-                            <td>00/00/0000</td>
-                          </tr>
+                          <% } %>
                         </tbody>
                       </table>
                 </div>
@@ -189,7 +202,7 @@
               <div class="container">
                  <div class="row">
                     <div class="col-md-12">
-                       <p>Â© 2019 All Rights Reserved. Design by<a href="https://html.design/"> Free Html Templates</a></p>
+                       <p>© 2019 All Rights Reserved. Design by<a href="https://html.design/"> Free Html Templates</a></p>
                     </div>
                  </div>
               </div>
@@ -207,4 +220,3 @@
       <script src="js/custom.js"></script>
    </body>
 </html>
-

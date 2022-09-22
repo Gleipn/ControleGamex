@@ -1,5 +1,12 @@
-
-
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<%@ page import="br.com.gamex.controlegamex.model.entidade.Cliente" %>
+<%@ page import="br.com.gamex.controlegamex.model.entidade.Jogo" %>
+<%@ page import="br.com.gamex.controlegamex.controller.JogoController" %>
+<%@ page import="java.util.ArrayList" %>
+<%
+		Cliente c = (Cliente) session.getAttribute("clienteLogado");
+%>
 <!DOCTYPE html>
 <html lang="en">
    <head>
@@ -27,6 +34,8 @@
       <!-- Tweaks for older IEs-->
       <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
+      <!--  Icons from bootstrap -->
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
       <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
@@ -48,7 +57,7 @@
                      <div class="full">
                         <div class="center-desk">
                            <div class="logo">
-                              <a href="index.html"><img src="images/logo.png" alt="#" /></a>
+                              <a href="index.html"><img src="images/GAMEX-sem-fundo.png" class="gamex-logo" alt="#" /></a>
                            </div>
                         </div>
                      </div>
@@ -81,9 +90,20 @@
                               <li class="nav-item d_none">
                                  <a class="nav-link" href="#"><i class="fa fa-search" aria-hidden="true"></i></a>
                               </li>
-                              <li class="nav-item d_none">
-                                 <a class="nav-link" href="#">Login</a>
-                              </li>
+                               <%
+    							if (session.getAttribute("clienteLogado") == null){ 
+    							%>
+    							<li class="nav-item d_none">
+                                    <a class="nav-link" href="login.jsp">Login</a>
+                                 </li>
+    							<% } else {%>
+                               <li class="nav-item d_none">
+                               <a class="nav-link" href="IniciarAlterarCliente?id=<%= c.getId() %>">Perfil <i class="fa fa-user" aria-hidden="true"></i></a>
+                            </li>
+                               <li class="nav-item d_none">
+                               <a class="nav-link" href="LogoutCliente">Sair</a>
+                            </li>
+    						<% } %>
                            </ul>
                         </div>
                      </nav>
@@ -111,15 +131,57 @@
                         <div class="row">
                            <div class="col-md-6">
                               <div class="text-bg">
-                                 <span>Computer And Laptop</span>
-                                 <h1>Accessories</h1>
+                                 <span>Xbox 360</span>
+                                 <h1>Console</h1>
                                  <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or </p>
                                  <a href="#">Buy Now </a> <a href="contact.html">Contact </a>
                               </div>
                            </div>
                            <div class="col-md-6">
                               <div class="text_img">
-                                 <figure><img src="images/pct.png" alt="#"/></figure>
+                                 <figure><img src="images/Xbox.png" id="index-img" alt="#"/></figure>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="carousel-item">
+                  <div class="container">
+                     <div class="carousel-caption">
+                        <div class="row">
+                           <div class="col-md-6">
+                              <div class="text-bg">
+                                 <span>PlayStation 4</span>
+                                 <h1>Console</h1>
+                                 <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or </p>
+                                 <a href="#">Buy Now </a> <a href="contact.html">Contact </a>
+                              </div>
+                           </div>
+                           <div class="col-md-6">
+                              <div class="text_img">
+                                 <figure><img src="images/ps5.png" id="index-img" alt="#"/></figure>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="carousel-item">
+                  <div class="container">
+                     <div class="carousel-caption">
+                        <div class="row">
+                           <div class="col-md-6">
+                              <div class="text-bg">
+                                 <span>PlayStation 5</span>
+                                 <h1>Console</h1>
+                                 <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or </p>
+                                 <a href="#">Buy Now </a> <a href="contact.html">Contact </a>
+                              </div>
+                           </div>
+                           <div class="col-md-6">
+                              <div class="text_img">
+                                 <figure><img src="images/playstation-5-horizontal-product-shot-01-ps5-en-29sep21.webp" id="index-img" alt="#"/></figure>
                               </div>
                            </div>
                         </div>
@@ -153,7 +215,7 @@
                         <div class="row">
                            <div class="col-md-6">
                               <div class="text-bg">
-                                 <span>Computer And Laptop</span>
+                                 <span>Nintendo Switch</span>
                                  <h1>Accessories</h1>
                                  <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or </p>
                                  <a href="#">Buy Now </a> <a href="contact.html">Contact </a>
@@ -161,49 +223,7 @@
                            </div>
                            <div class="col-md-6">
                               <div class="text_img">
-                                 <figure><img src="images/pct.png" alt="#"/></figure>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-               <div class="carousel-item">
-                  <div class="container">
-                     <div class="carousel-caption">
-                        <div class="row">
-                           <div class="col-md-6">
-                              <div class="text-bg">
-                                 <span>Computer And Laptop</span>
-                                 <h1>Accessories</h1>
-                                 <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or </p>
-                                 <a href="#">Buy Now </a> <a href="contact.html">Contact </a>
-                              </div>
-                           </div>
-                           <div class="col-md-6">
-                              <div class="text_img">
-                                 <figure><img src="images/pct.png" alt="#"/></figure>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-               <div class="carousel-item">
-                  <div class="container">
-                     <div class="carousel-caption">
-                        <div class="row">
-                           <div class="col-md-6">
-                              <div class="text-bg">
-                                 <span>Computer And Laptop</span>
-                                 <h1>Accessories</h1>
-                                 <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or </p>
-                                 <a href="#">Buy Now </a> <a href="contact.html">Contact </a>
-                              </div>
-                           </div>
-                           <div class="col-md-6">
-                              <div class="text_img">
-                                 <figure><img src="images/pct.png" alt="#"/></figure>
+                                 <figure><img src="images/i518502.webp" id="index-img" alt="#"/></figure>
                               </div>
                            </div>
                         </div>
@@ -255,7 +275,7 @@
             <div class="row">
                <div class="col-md-12">
                   <div class="titlepage">
-                     <h2>Our Products</h2>
+                     <h2>Os Jogos</h2>
                   </div>
                </div>
             </div>
@@ -263,60 +283,24 @@
                <div class="col-md-12">
                   <div class="our_products">
                      <div class="row">
-                        <div class="col-md-4 margin_bottom1">
-                           <div class="product_box">
-                              <figure><img src="images/product1.png" alt="#"/></figure>
-                              <h3>Computer</h3>
-                           </div>
-                        </div>
-                        <div class="col-md-4 margin_bottom1">
-                           <div class="product_box">
-                              <figure><img src="images/product2.png" alt="#"/></figure>
-                              <h3>Laptop</h3>
-                           </div>
-                        </div>
-                        <div class="col-md-4 margin_bottom1">
-                           <div class="product_box">
-                              <figure><img src="images/product3.png" alt="#"/></figure>
-                              <h3>Tablet</h3>
-                           </div>
-                        </div>
-                        <div class="col-md-4 margin_bottom1">
-                           <div class="product_box">
-                              <figure><img src="images/product4.png" alt="#"/></figure>
-                              <h3>Speakers</h3>
-                           </div>
-                        </div>
-                        <div class="col-md-4 margin_bottom1">
-                           <div class="product_box">
-                              <figure><img src="images/product5.png" alt="#"/></figure>
-                              <h3>internet</h3>
-                           </div>
-                        </div>
-                        <div class="col-md-4 margin_bottom1">
-                           <div class="product_box">
-                              <figure><img src="images/product6.png" alt="#"/></figure>
-                              <h3>Hardisk</h3>
-                           </div>
-                        </div>
+                     <%
+          			JogoController jc = new JogoController();
+          			ArrayList<Jogo> jogos = jc.Listar(6);
+          			int jindex = 0;
+          			for (Jogo j: jogos) {
+          				jindex++;
+          			%>
                         <div class="col-md-4">
                            <div class="product_box">
-                              <figure><img src="images/product7.png" alt="#"/></figure>
-                              <h3>Rams</h3>
+                              <figure><img class="produto-index" src="<%= j.getImagem() %>" alt="#"/></figure>
+                               <%
+    							if (session.getAttribute("clienteLogado") != null){ 
+    							%>
+    							<a class="btn" href="IniciarVenda?id=<%=j.getId()%>"><h3>Comprar</h3></a>
+    							<% } %>
                            </div>
                         </div>
-                        <div class="col-md-4">
-                           <div class="product_box">
-                              <figure><img src="images/product8.png" alt="#"/></figure>
-                              <h3>Bettery</h3>
-                           </div>
-                        </div>
-                        <div class="col-md-4">
-                           <div class="product_box">
-                              <figure><img src="images/product9.png" alt="#"/></figure>
-                              <h3>Drive</h3>
-                           </div>
-                        </div>
+                        <% } %>
                         <div class="col-md-12">
                            <a class="read_more" href="#">See More</a>
                         </div>
@@ -333,14 +317,14 @@
             <div class="row">
                <div class="col-md-6">
                   <div class="titlepage">
-                     <p>Every Computer and laptop</p>
-                     <h2>Up to 40% off !</h2>
+                     <p>Encontre o game ideal!</p>
+                     <h2>$ 40% off !</h2>
                      <a class="read_more" href="#">Shop Now</a>
                   </div>
                </div>
                <div class="col-md-6">
                   <div class="laptop_box">
-                     <figure><img src="images/pc.png" alt="#"/></figure>
+                     <figure><img src="images/CapaGamex.png" alt="#"/></figure>
                   </div>
                </div>
             </div>
@@ -470,7 +454,7 @@
             <div class="container">
                <div class="row">
                   <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
-                     <img class="logo1" src="images/logo1.png" alt="#"/>
+                     <img class="logo1" src="images/GAMEX-sem-fundo.png" alt="#"/>
                      <ul class="social_icon">
                         <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
                         <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
@@ -521,4 +505,3 @@
       <script src="js/custom.js"></script>
    </body>
 </html>
-

@@ -60,8 +60,12 @@
                   <input type="text" id="idDesenvolvedor" name="inputDesenvolvedor" class="form-control"  readonly value="<%= j.getDesenvolvedor()%>">
                 </div>
                 <div class="form-group">
-                  <label for="idValor">Valor</label>
-                  <input type="number" step="any" id="idValor" name="inputValor"  class="form-control" value="">
+                  <label for="idValor">Valor de Compra</label>
+                  <input type="number" step="any" id="idValor" name="inputValorCompra"  class="form-control" value="">
+                </div>
+                <div class="form-group">
+                  <label for="idValor">Valor de Venda</label>
+                  <input type="number" step="any" id="idValor" name="inputValorVenda"  class="form-control" value="">
                 </div>
                 <div class="form-group">
                   <label for="idEstoque">Quantidade</label>

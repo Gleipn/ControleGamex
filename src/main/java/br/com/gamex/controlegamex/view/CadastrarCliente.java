@@ -44,18 +44,35 @@ public class CadastrarCliente extends HttpServlet {
 		String endereco = request.getParameter("inputEndereco");
 		String telefone = request.getParameter("inputTelefone");
 		String email = request.getParameter("inputEmail");
+		String senha = request.getParameter("inputSenha");
+		String senhaRepetida = request.getParameter("inputSenhaRepetida");
 		
+		String destino = "";
+		
+		if(senha.equals(senhaRepetida)) {
 		Cliente c = new Cliente();
 		c.setCpf(cpf);
 		c.setNome(nome);
 		c.setEndereco(endereco);
 		c.setTelefone(telefone);
 		c.setEmail(email);
+		c.setSenha(senha);
 		
 		ClienteController controller = new ClienteController();
-		controller.Cadastrar(c);
 		
-		RequestDispatcher rd = request.getRequestDispatcher("testeLista.jsp");
+		try {
+		controller.Cadastrar(c);
+		destino = "home.jsp";
+		}catch(Exception e) {
+			e.printStackTrace();
+		} 
+		}else {
+			request.setAttribute("erro", "senhas não conferem");
+			destino = "cadastro.jsp";
+		}
+		
+		
+		RequestDispatcher rd = request.getRequestDispatcher(destino);
 		rd.forward(request, response);
 	}
 

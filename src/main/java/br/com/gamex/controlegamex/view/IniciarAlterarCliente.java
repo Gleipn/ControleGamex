@@ -45,7 +45,7 @@ public class IniciarAlterarCliente extends HttpServlet {
 		
 		request.setAttribute("cliente", c);
 		
-		RequestDispatcher rd = request.getRequestDispatcher("testeEditar.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("perfil.jsp");
 		rd.forward(request, response);
 	}
 

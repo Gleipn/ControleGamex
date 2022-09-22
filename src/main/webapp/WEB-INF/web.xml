@@ -201,6 +201,26 @@
   </servlet-mapping>
   <servlet>
     <description></description>
+    <display-name>LoginCliente</display-name>
+    <servlet-name>LoginCliente</servlet-name>
+    <servlet-class>br.com.gamex.controlegamex.view.LoginCliente</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>LoginCliente</servlet-name>
+    <url-pattern>/LoginCliente</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>LogoutCliente</display-name>
+    <servlet-name>LogoutCliente</servlet-name>
+    <servlet-class>br.com.gamex.controlegamex.view.LogoutCliente</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>LogoutCliente</servlet-name>
+    <url-pattern>/LogoutCliente</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
     <display-name>CadastrarUsuario</display-name>
     <servlet-name>CadastrarUsuario</servlet-name>
     <servlet-class>br.com.gamex.controlegamex.view.CadastrarUsuario</servlet-class>
@@ -298,5 +318,15 @@
   <servlet-mapping>
     <servlet-name>ExcluirJogo</servlet-name>
     <url-pattern>/ExcluirJogo</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>IniciarVenda</display-name>
+    <servlet-name>IniciarVenda</servlet-name>
+    <servlet-class>br.com.gamex.controlegamex.view.IniciarVenda</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>IniciarVenda</servlet-name>
+    <url-pattern>/IniciarVenda</url-pattern>
   </servlet-mapping>
 </web-app>

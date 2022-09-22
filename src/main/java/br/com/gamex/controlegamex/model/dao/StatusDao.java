@@ -30,7 +30,7 @@ public class StatusDao extends Conexao {
 		
 	}
 
-	public ArrayList<Status> Listar(){
+	public ArrayList<Status> Listar(long limite){
 		ArrayList<Status> lista = new ArrayList<Status>();
 		
 		String sql = "select s.*, v.criado_em as data_venda from status s "

@@ -2,24 +2,24 @@ package br.com.gamex.controlegamex.view;
 
 import java.io.IOException;
 
-import br.com.gamex.controlegamex.controller.StatusController;
-import br.com.gamex.controlegamex.model.entidade.Status;
-import jakarta.servlet.RequestDispatcher;
+import br.com.gamex.controlegamex.controller.ClienteController;
+import br.com.gamex.controlegamex.model.entidade.Cliente;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 /**
- * Servlet implementation class ExcluirStatus
+ * Servlet implementation class LoginUsuario
  */
-public class ExcluirStatus extends HttpServlet {
+public class LoginCliente extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ExcluirStatus() {
+    public LoginCliente() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -29,24 +29,7 @@ public class ExcluirStatus extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		//response.getWriter().append("Served at: ").append(request.getContextPath());
-		
-		long id = 0;
-		
-		try {
-			id = Long.parseLong(request.getParameter("id"));
-		}catch(Exception e) {
-			e.printStackTrace();
-		}
-		
-		StatusController controller = new StatusController();
-		Status s = new Status();
-		s.setId(id);
-		
-		controller.Excluir(s);
-		
-		RequestDispatcher rd = request.getRequestDispatcher("");
-		rd.forward(request, response);
+		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
@@ -54,7 +37,25 @@ public class ExcluirStatus extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
+		//doGet(request, response);
+		
+		String email = request.getParameter("inputEmail");
+		String senha = request.getParameter("inputSenha");
+		
+		Cliente c = new Cliente();
+		c.setEmail(email);
+		c.setSenha(senha);
+		
+		ClienteController controller = new ClienteController();
+		Cliente usr = controller.Logar(c);
+		
+		if (usr != null) {
+			HttpSession sessao = request.getSession();
+			
+			sessao.setAttribute("clienteLogado", usr);
+		}
+		
+		response.sendRedirect("home.jsp");
 	}
 
 }

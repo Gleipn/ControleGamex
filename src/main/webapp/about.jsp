@@ -1,3 +1,9 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<%@ page import="br.com.gamex.controlegamex.model.entidade.Cliente" %>
+<%
+		Cliente c = (Cliente) session.getAttribute("clienteLogado");
+%>
 <!DOCTYPE html>
 <html lang="en">
    <head>
@@ -79,12 +85,20 @@
                               <li class="nav-item d_none">
                                  <a class="nav-link" href="#"><i class="fa fa-search" aria-hidden="true"></i></a>
                               </li>
-                              <li class="nav-item d_none">
-                                 <a class="nav-link" href="#">Login</a>
-                              </li>
-                              <li class="nav-item d_none">
-                                 <a class="nav-link" href="#">Perfil <i class="fa fa-user" aria-hidden="true"></i></a>
-                              </li>
+                              <%
+    							if (session.getAttribute("clienteLogado") == null){ 
+    							%>
+    							<li class="nav-item d_none">
+                                    <a class="nav-link" href="login.jsp">Login</a>
+                                 </li>
+    							<% } else {%>
+                               <li class="nav-item d_none">
+                               <a class="nav-link" href="LocalizarCliente?id=<%= c.getId() %>">Perfil <i class="fa fa-user" aria-hidden="true"></i></a>
+                            </li>
+                                <li class="nav-item d_none">
+                               <a class="nav-link" href="LogoutCliente">Sair</a>
+                            </li>
+    						<% } %>
                            </ul>
                         </div>
                      </nav>

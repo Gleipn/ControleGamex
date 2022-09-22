@@ -2,6 +2,7 @@ package br.com.gamex.controlegamex.view;
 
 import java.io.IOException;
 
+import br.com.gamex.controlegamex.controller.JogoController;
 import br.com.gamex.controlegamex.controller.VendaController;
 import br.com.gamex.controlegamex.model.entidade.Cliente;
 import br.com.gamex.controlegamex.model.entidade.Jogo;
@@ -31,7 +32,8 @@ public class CadastrarVenda extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		//response.getWriter().append("Served at: ").append(request.getContextPath());
+		
 	}
 
 	/**
@@ -41,30 +43,46 @@ public class CadastrarVenda extends HttpServlet {
 		// TODO Auto-generated method stub
 		//doGet(request, response);
 		
-		String id_cliente = request.getParameter("inputCliente");
-		String id_jogo = request.getParameter("inputJogo");
+		String strId_jogo = request.getParameter("inputJogo");
+		String strId_cliente = request.getParameter("inputCliente");
+		
+		String strEstoque = request.getParameter("inputEstoque");
+		
+		long idCliente = 0;
+		long idJogo = 0;
+		try {
+			idJogo = Long.parseLong(strId_jogo);
+			idCliente = Long.parseLong(strId_cliente);
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		long estoque = 0;
+		
+		try {
+			estoque = Long.parseLong(strEstoque);
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		Jogo j = new Jogo();
+		j.setId(idJogo);
+		j.setEstoque(estoque);
+		
+		JogoController controller = new JogoController();
+		controller.RealizarVenda(j);
 		
 		Cliente c = new Cliente();
-		try {
-			c.setId(Long.parseLong(id_cliente));
-		} catch(Exception e) {
-			e.printStackTrace();
-		}
-		Jogo j = new Jogo();
-		try {
-			j.setId(Long.parseLong(id_jogo));
-		} catch(Exception e) {
-			e.printStackTrace();
-		}
+		c.setId(idCliente);
 		
 		Venda v = new Venda();
 		v.setCliente(c);
 		v.setJogo(j);
 		
-		VendaController controller = new VendaController();
-		controller.Cadastrar(v);
+		VendaController vc = new VendaController();
+		vc.Cadastrar(v);
 		
-		RequestDispatcher rd = request.getRequestDispatcher("");
+		RequestDispatcher rd = request.getRequestDispatcher("home.jsp");
 		rd.forward(request, response);
 	}
 

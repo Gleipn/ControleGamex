@@ -109,7 +109,8 @@ public class CompraDao extends Conexao {
 				j = new Jogo();
 				j.setId(rs.getLong("jogo_id"));
 				j.setNome(rs.getString("jogo_nome"));
-				j.setValor(rs.getDouble("jogo_valor"));
+				j.setValorCompra(rs.getDouble("jogo_valorcompra"));
+				j.setValorVenda(rs.getDouble("jogo_valorvenda"));
 				j.setCategoria(rs.getString("jogo_categoria"));
 				c.setJogo(j);
 				

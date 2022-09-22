@@ -1,3 +1,14 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<%@ page import="br.com.gamex.controlegamex.model.entidade.Cliente" %>
+<%
+		Cliente c = (Cliente) session.getAttribute("clienteLogado");
+
+		if ((c) != null){
+		RequestDispatcher rd = request.getRequestDispatcher("IniciarAlterarCliente?id="+c.getId());
+		rd.forward(request, response);
+		}
+%>
 <!DOCTYPE html>
 <html lang="en">
    <head>
@@ -8,7 +19,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <meta name="viewport" content="initial-scale=1, maximum-scale=1">
       <!-- site metas -->
-      <title>cla</title>
+      <title>Gamex</title>
       <meta name="keywords" content="">
       <meta name="description" content="">
       <meta name="author" content="">
@@ -18,6 +29,8 @@
       <link rel="stylesheet" href="css/style.css">
       <!-- Responsive-->
       <link rel="stylesheet" href="css/responsive.css">
+      <!-- Style do perfil -->
+      <link rel="stylesheet" href="css/perfil.css">
       <!-- fevicon -->
       <link rel="icon" href="images/fevicon.png" type="image/gif" />
       <!-- Scrollbar Custom CSS -->
@@ -46,7 +59,7 @@
                      <div class="full">
                         <div class="center-desk">
                            <div class="logo">
-                              <a href="index.html"><img src="images/GAMEX-sem-fundo.png" class="gamex-logo" alt="#" /></a>
+                              <a href="index.html"><img src="images/GAMEX-sem-fundo.png" class="gamex-logo" alt="Gamex" /></a>
                            </div>
                         </div>
                      </div>
@@ -58,7 +71,7 @@
                         </button>
                         <div class="collapse navbar-collapse" id="navbarsExample04">
                            <ul class="navbar-nav mr-auto">
-                              <li class="nav-item ">
+                              <li class="nav-item">
                                  <a class="nav-link" href="index.html">Home</a>
                               </li>
                               <li class="nav-item">
@@ -73,15 +86,25 @@
                               <li class="nav-item">
                                  <a class="nav-link" href="product.html">Products</a>
                               </li>
-                              <li class="nav-item active">
+                              <li class="nav-item">
                                  <a class="nav-link" href="contact.html">Contact Us</a>
                               </li>
                               <li class="nav-item d_none">
                                  <a class="nav-link" href="#"><i class="fa fa-search" aria-hidden="true"></i></a>
-                              </li>
-                              <li class="nav-item d_none">
-                                 <a class="nav-link" href="login.html">Login</a>
-                              </li>
+                              <%
+    							if (session.getAttribute("clienteLogado") == null){ 
+    							%>
+    							<li class="nav-item d_none">
+                                    <a class="nav-link" href="login.jsp">Login</a>
+                                 </li>
+    							<% } else {%>
+                               <li class="nav-item d_none">
+                               <a class="nav-link" href="LocalizarCliente?id=<%= c.getId() %>">Perfil <i class="fa fa-user" aria-hidden="true"></i></a>
+                            </li>
+                                <li class="nav-item d_none">
+                               <a class="nav-link" href="LogoutCliente">Sair</a>
+                            </li>
+    						<% } %>
                            </ul>
                         </div>
                      </nav>
@@ -90,36 +113,52 @@
             </div>
          </div>
       </header>
-      <!-- end header inner -->
-      <!-- end header -->
-      <!--  contact -->
-      <div class="contact">
+
+      <main>
+
+        <div class="contact">
          <div class="container">
             <div class="row">
                <div class="col-md-12">
                   <div class="titlepage">
-                     <h2>Contact Now</h2>
+                     <h2>Cadastrar</h2>
+                     <%
+				if (request.getAttribute("erro") != null){
+				 %>
+	 			<p> <%= request.getAttribute("erro") %> </p>
+	 
+	 			<% } %>
                   </div>
                </div>
             </div>
             <div class="row">
                <div class="col-md-10 offset-md-1">
-                  <form id="request" class="main_form">
+                  <form id="request" method="post" action="CadastrarCliente" class="main_form">
                      <div class="row">
                         <div class="col-md-12 ">
-                           <input class="contactus" placeholder="Name" type="type" name="Name"> 
+                           <input class="contactus" placeholder="CPF" type="text" name="inputCpf"> 
                         </div>
                         <div class="col-md-12">
-                           <input class="contactus" placeholder="Email" type="type" name="Email"> 
+                            <input class="contactus" placeholder="Nome" type="text" name="inputNome">                          
+                         </div>
+                         <div class="col-md-12">
+                            <input class="contactus" placeholder="Endereço" type="text" name="inputEndereco">                          
+                         </div>
+                         <div class="col-md-12">
+                            <input class="contactus" placeholder="Telefone" type="text" name="inputTelefone">                          
+                         </div>
+                        <div class="col-md-12">
+                           <input class="contactus" placeholder="Email" type="text" name="inputEmail"> 
                         </div>
                         <div class="col-md-12">
-                           <input class="contactus" placeholder="Phone Number" type="type" name="Phone Number">                          
+                           <input class="contactus" placeholder="Senha" type="password" name="inputSenha"> 
                         </div>
                         <div class="col-md-12">
-                           <textarea class="textarea" placeholder="Message" type="type" Message="Name">Message </textarea>
+                           <input class="contactus" placeholder="Repita a senha" type="password" name="inputSenhaRepetida"> 
                         </div>
+                        
                         <div class="col-md-12">
-                           <button class="send_btn">Send</button>
+                           <input type="submit" class="send_btn">
                         </div>
                      </div>
                   </form>
@@ -127,53 +166,55 @@
             </div>
          </div>
       </div>
-      <!-- end contact -->
-      <!--  footer -->
+      </main>
+
+
+
       <footer>
-         <div class="footer">
-            <div class="container">
-               <div class="row">
-                  <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
-                     <img class="logo1" src="images/GAMEX-sem-fundo.png" class="gamex-logo" alt="#"/>
-                     <ul class="social_icon">
-                        <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-                        <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-                        <li><a href="#"><i class="fa fa-linkedin-square" aria-hidden="true"></i></a></li>
-                        <li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
-                     </ul>
-                  </div>
-                  <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
-                     <h3>About Us</h3>
-                     <ul class="about_us">
-                        <li>dolor sit amet, consectetur<br> magna aliqua. Ut enim ad <br>minim veniam, <br> quisdotempor incididunt r</li>
-                     </ul>
-                  </div>
-                  <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
-                     <h3>Contact Us</h3>
-                     <ul class="conta">
-                        <li>dolor sit amet,<br> consectetur <br>magna aliqua.<br> quisdotempor <br>incididunt ut e </li>
-                     </ul>
-                  </div>
-                  <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
-                     <form class="bottom_form">
-                        <h3>Newsletter</h3>
-                        <input class="enter" placeholder="Enter your email" type="text" name="Enter your email">
-                        <button class="sub_btn">subscribe</button>
-                     </form>
-                  </div>
-               </div>
-            </div>
-            <div class="copyright">
-               <div class="container">
-                  <div class="row">
-                     <div class="col-md-12">
-                        <p>Â© 2019 All Rights Reserved. Design by<a href="https://html.design/"> Free Html Templates</a></p>
-                     </div>
-                  </div>
-               </div>
-            </div>
-         </div>
-      </footer>
+        <div class="footer">
+           <div class="container">
+              <div class="row">
+                 <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
+                    <img class="logo1" src="images/GAMEX-sem-fundo.png" alt="#"/>
+                    <ul class="social_icon">
+                       <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                       <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                       <li><a href="#"><i class="fa fa-linkedin-square" aria-hidden="true"></i></a></li>
+                       <li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+                    </ul>
+                 </div>
+                 <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
+                    <h3>About Us</h3>
+                    <ul class="about_us">
+                       <li>dolor sit amet, consectetur<br> magna aliqua. Ut enim ad <br>minim veniam, <br> quisdotempor incididunt r</li>
+                    </ul>
+                 </div>
+                 <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
+                    <h3>Contact Us</h3>
+                    <ul class="conta">
+                       <li>dolor sit amet,<br> consectetur <br>magna aliqua.<br> quisdotempor <br>incididunt ut e </li>
+                    </ul>
+                 </div>
+                 <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
+                    <form class="bottom_form">
+                       <h3>Newsletter</h3>
+                       <input class="enter" placeholder="Enter your email" type="text" name="Enter your email">
+                       <button class="sub_btn">subscribe</button>
+                    </form>
+                 </div>
+              </div>
+           </div>
+           <div class="copyright">
+              <div class="container">
+                 <div class="row">
+                    <div class="col-md-12">
+                       <p>© 2019 All Rights Reserved. Design by<a href="https://html.design/"> Free Html Templates</a></p>
+                    </div>
+                 </div>
+              </div>
+           </div>
+        </div>
+     </footer>
       <!-- end footer -->
       <!-- Javascript files-->
       <script src="js/jquery.min.js"></script>
@@ -185,4 +226,3 @@
       <script src="js/custom.js"></script>
    </body>
 </html>
-

@@ -8,6 +8,7 @@ public class Cliente {
 	private String endereco;
 	private String telefone;
 	private String email;
+	private String senha;
 	private String criado_em;
 	
 	public long getId() {
@@ -42,6 +43,12 @@ public class Cliente {
 	}
 	public String getEmail() {
 		return email;
+	}
+	public String getSenha() {
+		return senha;
+	}
+	public void setSenha(String senha) {
+		this.senha = senha;
 	}
 	public void setEmail(String email) {
 		this.email = email;

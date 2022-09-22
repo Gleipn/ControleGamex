@@ -6,7 +6,8 @@ public class Jogo {
 	private String nome;
 	private String categoria;
 	private String desenvolvedor;
-	private double valor;
+	private double valorCompra;
+	private double valorVenda;
 	private long estoque;
 	private String imagem;
 	private String criado_em;
@@ -35,11 +36,17 @@ public class Jogo {
 	public void setDesenvolvedor(String desenvolvedor) {
 		this.desenvolvedor = desenvolvedor;
 	}
-	public double getValor() {
-		return valor;
+	public double getValorCompra() {
+		return valorCompra;
 	}
-	public void setValor(double valor) {
-		this.valor = valor;
+	public void setValorCompra(double valorCompra) {
+		this.valorCompra = valorCompra;
+	}
+	public double getValorVenda() {
+		return valorVenda;
+	}
+	public void setValorVenda(double valorVenda) {
+		this.valorVenda = valorVenda;
 	}
 	public long getEstoque() {
 		return estoque;

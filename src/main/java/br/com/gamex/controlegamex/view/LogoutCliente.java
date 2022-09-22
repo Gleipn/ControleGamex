@@ -2,24 +2,22 @@ package br.com.gamex.controlegamex.view;
 
 import java.io.IOException;
 
-import br.com.gamex.controlegamex.controller.CompraController;
-import br.com.gamex.controlegamex.model.entidade.Compra;
-import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 /**
- * Servlet implementation class ExcluirCompra
+ * Servlet implementation class LogoutUsuario
  */
-public class ExcluirCompra extends HttpServlet {
+public class LogoutCliente extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ExcluirCompra() {
+    public LogoutCliente() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,22 +29,10 @@ public class ExcluirCompra extends HttpServlet {
 		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
 		
-		long id = 0;
+		HttpSession sessao = request.getSession();
+		sessao.invalidate();
 		
-		try {
-			id = Long.parseLong(request.getParameter("id"));
-		}catch(Exception e) {
-			e.printStackTrace();
-		}
-		
-		CompraController controller = new CompraController();
-		Compra c = new Compra();
-		c.setId(id);
-		
-		controller.Excluir(c);
-		
-		RequestDispatcher rd = request.getRequestDispatcher("");
-		rd.forward(request, response);
+		response.sendRedirect("home.jsp");
 	}
 
 	/**

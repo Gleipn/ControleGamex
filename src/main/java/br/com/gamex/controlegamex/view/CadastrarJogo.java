@@ -42,31 +42,16 @@ public class CadastrarJogo extends HttpServlet {
 		String nome = request.getParameter("inputNome");
 		String categoria = request.getParameter("inputCategoria");
 		String desenvolvedor = request.getParameter("inputDesenvolvedor");
-		String strValor = request.getParameter("inputValor");
-		String strEstoque = request.getParameter("inputEstoque");
-		//String id_fornecedor = request.getParameter("inputFornecedor");
 		
 		double valor = 0.0;
 		long estoque = 0;
-		
-		try {
-			valor = Double.parseDouble(strValor);
-			estoque = Long.parseLong(strEstoque);
-		} catch(Exception e) {
-			e.printStackTrace();
-		}
-		
-		/*
-		 * Fornecedor f = new Fornecedor(); try {
-		 * f.setId(Long.parseLong(id_fornecedor)); } catch(Exception e) {
-		 * e.printStackTrace(); }
-		 */
 		
 		Jogo j = new Jogo();
 		j.setNome(nome);
 		j.setCategoria(categoria);
 		j.setDesenvolvedor(desenvolvedor);
-		j.setValor(valor);
+		j.setValorCompra(valor);
+		j.setValorVenda(valor);
 		j.setEstoque(estoque);
 		
 		JogoController controller = new JogoController();

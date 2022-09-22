@@ -1,3 +1,9 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<%@ page import="br.com.gamex.controlegamex.model.entidade.Cliente" %>
+<%
+		Cliente c = (Cliente) session.getAttribute("clienteLogado");
+%>
 <!DOCTYPE html>
 <html lang="en">
    <head>
@@ -8,7 +14,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <meta name="viewport" content="initial-scale=1, maximum-scale=1">
       <!-- site metas -->
-      <title>Gamex</title>
+      <title>cla</title>
       <meta name="keywords" content="">
       <meta name="description" content="">
       <meta name="author" content="">
@@ -46,7 +52,7 @@
                      <div class="full">
                         <div class="center-desk">
                            <div class="logo">
-                              <a href="index.html"><img src="images/GAMEX-sem-fundo.png" class="gamex-logo" alt="Gamex" /></a>
+                              <a href="index.html"><img src="images/GAMEX-sem-fundo.png" class="gamex-logo" alt="#" /></a>
                            </div>
                         </div>
                      </div>
@@ -59,29 +65,40 @@
                         <div class="collapse navbar-collapse" id="navbarsExample04">
                            <ul class="navbar-nav mr-auto">
                               <li class="nav-item ">
-                                 <a class="nav-link" href="index.html">Inicio</a>
+                                 <a class="nav-link" href="index.html">Home</a>
                               </li>
                               <li class="nav-item">
-                                 <a class="nav-link" href="about.html">Sobre</a>
+                                 <a class="nav-link" href="about.html">About</a>
                               </li>
                               <li class="nav-item">
-                                 <a class="nav-link active" href="computer.html">computadores</a>
+                                 <a class="nav-link" href="computer.html">Computer</a>
                               </li>
                               <li class="nav-item">
-                                 <a class="nav-link" href="laptop.html">videogame</a>
+                                 <a class="nav-link" href="laptop.html">Laptop</a>
                               </li>
                               <li class="nav-item">
-                                 <a class="nav-link" href="product.html">produtos</a>
+                                 <a class="nav-link" href="product.html">Products</a>
                               </li>
-                              <li class="nav-item">
-                                 <a class="nav-link" href="contact.html">nosso contato</a>
+                              <li class="nav-item active">
+                                 <a class="nav-link" href="contact.html">Contact Us</a>
                               </li>
                               <li class="nav-item d_none">
                                  <a class="nav-link" href="#"><i class="fa fa-search" aria-hidden="true"></i></a>
                               </li>
-                              <li class="nav-item d_none">
-                                 <a class="nav-link" href="login.html">Login</a>
-                              </li>
+                              <%
+    							if (session.getAttribute("clienteLogado") == null){ 
+    							%>
+    							<li class="nav-item d_none">
+                                    <a class="nav-link" href="login.jsp">Login</a>
+                                 </li>
+    							<% } else {%>
+                               <li class="nav-item d_none">
+                               <a class="nav-link" href="LocalizarCliente?id=<%= c.getId() %>">Perfil <i class="fa fa-user" aria-hidden="true"></i></a>
+                            </li>
+                                <li class="nav-item d_none">
+                               <a class="nav-link" href="LogoutCliente">Sair</a>
+                            </li>
+    						<% } %>
                            </ul>
                         </div>
                      </nav>
@@ -92,34 +109,49 @@
       </header>
       <!-- end header inner -->
       <!-- end header -->
-      <!-- laptop  section -->
-      <div class="laptop">
+      <!--  contact -->
+      <div class="contact">
          <div class="container">
             <div class="row">
-               <div class="col-md-6">
+               <div class="col-md-12">
                   <div class="titlepage">
-                     <p>Every Computer and laptop</p>
-                     <h2>Up to 40% off !</h2>
-                     <a class="read_more" href="#">Shop Now</a>
+                     <h2>Contact Now</h2>
                   </div>
                </div>
-               <div class="col-md-6">
-                  <div class="laptop_box">
-                     <figure><img src="images/pc.png" alt="#"/></figure>
-                  </div>
+            </div>
+            <div class="row">
+               <div class="col-md-10 offset-md-1">
+                  <form id="request" class="main_form">
+                     <div class="row">
+                        <div class="col-md-12 ">
+                           <input class="contactus" placeholder="Name" type="type" name="Name"> 
+                        </div>
+                        <div class="col-md-12">
+                           <input class="contactus" placeholder="Email" type="type" name="Email"> 
+                        </div>
+                        <div class="col-md-12">
+                           <input class="contactus" placeholder="Phone Number" type="type" name="Phone Number">                          
+                        </div>
+                        <div class="col-md-12">
+                           <textarea class="textarea" placeholder="Message" type="type" Message="Name">Message </textarea>
+                        </div>
+                        <div class="col-md-12">
+                           <button class="send_btn">Send</button>
+                        </div>
+                     </div>
+                  </form>
                </div>
             </div>
          </div>
       </div>
-      </div>
-      <!-- end laptop  section -->
+      <!-- end contact -->
       <!--  footer -->
       <footer>
          <div class="footer">
             <div class="container">
                <div class="row">
                   <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
-                     <img class="logo1" src="images/GAMEX-sem-fundo.png" alt="#"/>
+                     <img class="logo1" src="images/GAMEX-sem-fundo.png" class="gamex-logo" alt="#"/>
                      <ul class="social_icon">
                         <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
                         <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>

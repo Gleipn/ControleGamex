@@ -12,8 +12,8 @@ public class ClienteDao extends Conexao {
 	public void Cadastrar(Cliente c) {
 		
 		String sql = "insert into cliente (cpf_cliente, nome_cliente, endereco_cliente, "
-				+ "telefone_cliente, email_cliente) "
-				+ "values (?, ?, ?, ?, ?)";
+				+ "telefone_cliente, email_cliente, senha_cliente) "
+				+ "values (?, ?, ?, ?, ?, md5(?))";
 		
 		try {
 			PreparedStatement ps = criarConexao().prepareStatement(sql);
@@ -22,6 +22,7 @@ public class ClienteDao extends Conexao {
 			ps.setString(3, c.getEndereco());
 			ps.setString(4, c.getTelefone());
 			ps.setString(5, c.getEmail());
+			ps.setString(6, c.getSenha());
 			
 			ps.execute();
 			
@@ -148,4 +149,32 @@ public class ClienteDao extends Conexao {
 		
 	}
 	
+	public Cliente Logar(Cliente c) {
+		Cliente usr = null;
+		
+		try {
+			String sql = "select * from cliente where email_cliente = ? and senha_cliente = md5(?)";
+			
+			PreparedStatement ps = criarConexao().prepareStatement(sql);
+			ps.setString(1, c.getEmail());
+			ps.setString(2, c.getSenha());
+			
+			ResultSet rs = ps.executeQuery();
+			if (rs.next()) {
+				usr = new Cliente();
+				usr.setId(rs.getLong("id_cliente"));
+				usr.setCpf(rs.getString("cpf_cliente"));
+				usr.setNome(rs.getString("nome_cliente"));
+				usr.setTelefone(rs.getString("telefone_cliente"));
+				usr.setEmail(rs.getString("email_cliente"));
+				usr.setCriado_em(rs.getString("criado_em"));
+			}
+		} catch(SQLException e) {
+			e.printStackTrace();
+		} finally {
+			fecharConexao();
+		}
+		
+		return usr;
+	}
 }
