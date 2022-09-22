@@ -72,8 +72,6 @@
                             <td><%= j.getCriado_em() %></td>
                             <td>
                             <a href="IniciarCompra?id=<%= j.getId() %>">Repor</a> 
-							<a href="ExcluirJogo?id=<%= j.getId() %>"
-					   		onclick="return confirm('Deseja excluir esse registro?')">Excluir</a>
 					</td>
                           </tr>
                           <% } %>

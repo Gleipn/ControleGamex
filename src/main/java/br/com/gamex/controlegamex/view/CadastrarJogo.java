@@ -43,15 +43,16 @@ public class CadastrarJogo extends HttpServlet {
 		String categoria = request.getParameter("inputCategoria");
 		String desenvolvedor = request.getParameter("inputDesenvolvedor");
 		
-		double valor = 0.0;
+		double valorcompra = 0.00;
+		double valorvenda = 0.00;
 		long estoque = 0;
 		
 		Jogo j = new Jogo();
 		j.setNome(nome);
 		j.setCategoria(categoria);
 		j.setDesenvolvedor(desenvolvedor);
-		j.setValorCompra(valor);
-		j.setValorVenda(valor);
+		j.setValorCompra(valorcompra);
+		j.setValorVenda(valorvenda);
 		j.setEstoque(estoque);
 		
 		JogoController controller = new JogoController();

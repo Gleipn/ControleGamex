@@ -39,10 +39,10 @@ public class ExcluirJogo extends HttpServlet {
 			e.printStackTrace();
 		}
 		
+		JogoController controller = new JogoController();
 		Jogo j = new Jogo();
 		j.setId(id);
 		
-		JogoController controller = new JogoController();
 		controller.Excluir(j);
 		
 		RequestDispatcher rd = request.getRequestDispatcher("jogos.jsp");
